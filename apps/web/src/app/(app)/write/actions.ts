@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 import { and, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { articles, users } from "@/db/schema";
@@ -230,12 +231,27 @@ export async function deleteArticle(id: string): Promise<{ ok: boolean; error?: 
   const { userId } = await auth();
   if (!userId) return { ok: false, error: "auth" };
 
-  const [a] = await db.select({ authorId: articles.authorId }).from(articles).where(eq(articles.id, id)).limit(1);
+  const [a] = await db
+    .select({ authorId: articles.authorId, slug: articles.slug, username: users.username })
+    .from(articles)
+    .leftJoin(users, eq(users.id, articles.authorId))
+    .where(eq(articles.id, id))
+    .limit(1);
   if (!a) return { ok: false, error: "not found" };
   if (a.authorId !== userId) return { ok: false, error: "forbidden" };
 
   // likes/saves/comments/notifications cascade-delete via FK.
   await db.delete(articles).where(eq(articles.id, id));
+
+  // Bust the cached RSC payloads so the post disappears immediately on redirect
+  // (no manual refresh needed).
+  revalidatePath("/home");
+  revalidatePath("/explore");
+  revalidatePath("/drafts");
+  if (a.username) {
+    revalidatePath(`/${a.username}`);
+    revalidatePath(`/${a.username}/${a.slug}`);
+  }
   return { ok: true };
 }
 

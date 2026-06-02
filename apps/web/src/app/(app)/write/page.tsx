@@ -7,7 +7,7 @@ import {
   Eye, Pencil, Settings, Send, ChevronDown, X,
   Mail, Zap, Clock, AlertTriangle, CheckCircle, Copy, ExternalLink, ImagePlus,
 } from "lucide-react";
-import { upload } from "@vercel/blob/client";
+import { uploadImage } from "@/lib/upload-client";
 import { AutoTextarea } from "@/components/editor/auto-textarea";
 import { RichEditor } from "@/components/editor/rich-editor";
 import { publishArticle, getArticleForEdit, type PublicationType } from "./actions";
@@ -116,11 +116,11 @@ export default function WritePage() {
     setCoverError("");
     setUploadingCover(true);
     try {
-      const blob = await upload(file.name, file, { access: "public", handleUploadUrl: "/api/upload" });
-      setCoverImage(blob.url);
+      const url = await uploadImage(file);
+      setCoverImage(url);
     } catch (err) {
       console.error("[cover upload] failed:", err);
-      setCoverError("Upload failed — image storage may not be configured yet.");
+      setCoverError(err instanceof Error ? err.message : "Upload failed.");
     } finally {
       setUploadingCover(false);
     }

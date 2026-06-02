@@ -71,6 +71,14 @@
 
 ---
 
+## 🚀 LIVE — deployed 2026-06-02
+Openpaper is live on Vercel: **openpaper-five.vercel.app** (GitHub: `Oratokhai/openpaper`, public). Root dir `apps/web`, Framework Preset Next.js, dev Clerk keys, Neon (cloud), env vars set in Vercel. Verified: landing/explore/reader/post all 200, real 404 status in prod. First editorial post published: `/oratokhai/why-i-built-openpaper`.
+**Still for real launch:** Vercel Blob store (cover/banner uploads — `BLOB_READ_WRITE_TOKEN`), `NEXT_PUBLIC_APP_URL` = live domain (email/share links), production Clerk instance + own OAuth apps, Resend verified domain.
+
+### Polish fixes (2026-06-02)
+- [x] **Delete-post UX** — `deleteArticle` now calls `revalidatePath` (`/home`, `/explore`, `/drafts`, `/<user>`, `/<user>/<slug>`), so a deleted post disappears immediately on redirect instead of lingering until a manual refresh.
+- [x] **Image uploads work without infra** — rewrote `/api/upload` into a unified server route: uses Vercel Blob when `BLOB_READ_WRITE_TOKEN` is set (prod), else falls back to writing `public/uploads/` (local dev). Shared client helper `src/lib/upload-client.ts` (`uploadImage`); both cover (`write/page.tsx`) and banner (`profile-banner.tsx`) use it. Dropped `@vercel/blob/client` direct-upload. Cap 4 MB (under Vercel's 4.5 MB serverless body limit). `public/uploads/` gitignored. Prod still needs a Blob store connected for persistence.
+
 ## Phase 2 — Backend
 **Goal:** Make it real — auth, database, actual publishing/following.
 

@@ -62,9 +62,10 @@
 - [x] Settings panel — ✅ freshness + per-post email toggle wired into publish flow
 - [ ] Monetization detail — shelved, revisit at Phase 3
 - [ ] Resend domain verification — needed for real subscriber delivery (free tier = self only)
+- [ ] Vercel Blob store — image uploads now work in **local dev** via `public/uploads/` fallback; prod still needs a Blob store connected (`BLOB_READ_WRITE_TOKEN`) for persistent cover/banner images
 - [ ] Smarter feed ranking (trending currently = raw like count)
 
 ---
 
 *Tags: `#platform` `#publication` `#AI` `#Openpaper`*
-*Vault initialized: 2026-05-30 | Last synced: 2026-06-02*
+*Vault initialized: 2026-05-30 | Last synced: 2026-06-02 (delete-post revalidation + unified image upload w/ dev fallback)*

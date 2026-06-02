@@ -2,9 +2,9 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { upload } from "@vercel/blob/client";
 import { Camera } from "lucide-react";
 import { updateBanner } from "@/lib/social-actions";
+import { uploadImage } from "@/lib/upload-client";
 
 export function ProfileBanner({ bannerUrl, isSelf }: { bannerUrl: string | null; isSelf: boolean }) {
   const router = useRouter();
@@ -19,12 +19,12 @@ export function ProfileBanner({ bannerUrl, isSelf }: { bannerUrl: string | null;
     setError("");
     setBusy(true);
     try {
-      const blob = await upload(file.name, file, { access: "public", handleUploadUrl: "/api/upload" });
-      await updateBanner(blob.url);
+      const url = await uploadImage(file);
+      await updateBanner(url);
       router.refresh();
     } catch (err) {
       console.error("[banner upload] failed:", err);
-      setError("Upload failed — image storage may not be configured yet.");
+      setError(err instanceof Error ? err.message : "Upload failed.");
     } finally {
       setBusy(false);
     }
