@@ -129,6 +129,18 @@ Mirrors Substack's toolbar pattern (decided after analysing their options):
 
 ---
 
+## Responsive / Mobile (pass shipped 2026-06-02)
+
+Web-first, but the site is now phone-usable (verified at 390px, no horizontal overflow). Conventions:
+- **Breakpoint for the shell:** `md` (768px). Below `md` = mobile chrome, `md+` = desktop chrome.
+- **Navigation:** `SidebarRail` renders the left icon rail `hidden md:flex`, **and** a `md:hidden` fixed bottom tab bar + floating Write FAB. Don't add a third nav — extend these.
+- **Content offset:** `(app)/layout` = `md:pl-[76px]` (clears rail) + `pb-[calc(env(safe-area-inset-bottom)+56px)] md:pb-0` (clears bottom bar). Honor iOS safe-area insets on fixed bottom UI.
+- **Headings:** scale down on mobile — display `text-6xl sm:text-7xl md:text-8xl`, sections `text-4xl sm:text-5xl`. Never ship a fixed `text-5xl`+ heading without a smaller mobile step.
+- **Section padding:** `py-20 md:py-36`, `px-5 sm:px-8`.
+- **Drawers/side panels:** `w-full sm:w-[Npx]` so they don't clip on narrow phones.
+- **Rows with meta + actions** (byline, profile header): stack `flex-col sm:flex-row` so buttons don't collide with text.
+- **Covers** keep white overlay titles → cover gradients must stay dark (see cover note above).
+
 ## Related Notes
 
 - [[Naming & Brand]]

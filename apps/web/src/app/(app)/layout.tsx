@@ -12,7 +12,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
       <SidebarRail unreadNotifications={unreadNotifications} profileUsername={profileUsername} />
-      <div className="pl-[76px]">{children}</div>
+      {/* Clear the left rail on desktop; clear the bottom tab bar on mobile. */}
+      <div className="md:pl-[76px] pb-[calc(env(safe-area-inset-bottom)+56px)] md:pb-0">{children}</div>
     </div>
   );
 }

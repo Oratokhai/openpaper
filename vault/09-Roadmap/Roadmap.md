@@ -78,6 +78,13 @@ Openpaper is live on Vercel: **openpaper-five.vercel.app** (GitHub: `Oratokhai/o
 ### Polish fixes (2026-06-02)
 - [x] **Delete-post UX** — `deleteArticle` now calls `revalidatePath` (`/home`, `/explore`, `/drafts`, `/<user>`, `/<user>/<slug>`), so a deleted post disappears immediately on redirect instead of lingering until a manual refresh.
 - [x] **Image uploads work without infra** — rewrote `/api/upload` into a unified server route: uses Vercel Blob when `BLOB_READ_WRITE_TOKEN` is set (prod), else falls back to writing `public/uploads/` (local dev). Shared client helper `src/lib/upload-client.ts` (`uploadImage`); both cover (`write/page.tsx`) and banner (`profile-banner.tsx`) use it. Dropped `@vercel/blob/client` direct-upload. Cap 4 MB (under Vercel's 4.5 MB serverless body limit). `public/uploads/` gitignored. Prod still needs a Blob store connected for persistence.
+- [x] **Palette rebrand** — indigo/violet → forest/olive green (`#283618`/`#606c38`/sage `#a3b18a`) + cream `#fdf0d5`. See [[Design & Style]].
+- [x] **Mobile responsive pass** — site now feels good on phones (verified at 390px, zero horizontal overflow):
+  - **App shell**: `SidebarRail` is the left rail on `md+`, a **fixed bottom tab bar** below `md` (Home/Explore/Models/Saved/Notifications + account), with a floating **Write FAB**. `(app)/layout` uses `md:pl-[76px]` + bottom padding (safe-area aware) on mobile.
+  - **Landing**: new `landing-mobile-menu.tsx` hamburger (Explore/Models/Sign in); hero `text-6xl sm:text-7xl md:text-8xl`; section headings `text-4xl sm:text-5xl`; `py-20 md:py-36`; hero min-h `600px lg:860px`.
+  - **Editor**: publish drawer `w-full sm:w-[420px]`.
+  - **Reader**: byline + Subscribe/Follow stack on mobile (`flex-col sm:flex-row`) — fixed a collision bug.
+  - **Root**: added `viewport` export (`width=device-width`, `themeColor #0a0a0a`).
 
 ## Phase 2 — Backend
 **Goal:** Make it real — auth, database, actual publishing/following.

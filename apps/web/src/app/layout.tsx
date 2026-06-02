@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Lora, Fraunces } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
@@ -30,6 +30,12 @@ export const metadata: Metadata = {
   title: "Openpaper — Write the AI era",
   description:
     "AI moves fast. Write it down. Openpaper is where developers, builders, and researchers publish what they're learning — written by the people building it.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({

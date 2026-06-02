@@ -35,7 +35,7 @@
 | Profile | Single profile for all users (no writer/reader split) | 2026-05-30 |
 | Social layer | Likes, reactions, comments, replies, threads, reshares, saved, DMs, activity feed, notifications, trending, topics | 2026-05-30 |
 | Monetization | Substack-style revenue share — shelved for now | 2026-05-30 |
-| Mobile | Web first, mobile later | 2026-05-30 |
+| Mobile | Web first; **responsive mobile pass shipped 2026-06-02** (bottom tab bar, Write FAB, landing hamburger, full-width drawer, scaled hero/headings) | 2026-05-30 |
 | Launch strategy | Open to all | 2026-05-30 |
 | Short-form content | No — revisit if audience demands it | 2026-05-30 |
 | Closest comparison | Paragraph.xyz but for AI | 2026-05-30 |

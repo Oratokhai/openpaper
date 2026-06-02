@@ -104,7 +104,7 @@ export function DbArticleReader({
             )}
 
             {/* Byline */}
-            <div className="flex items-center gap-3 mb-8 pb-8 border-b border-white/[0.06]">
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-3 mb-8 pb-8 border-b border-white/[0.06]">
               <Link href={`/${author.username}`} className="flex items-center gap-3 group">
                 {author.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -119,7 +119,7 @@ export function DbArticleReader({
                   <p className="text-[13px] text-[#858585]">{formatDate(meta.publishedAt)} · {meta.readingTime}</p>
                 </div>
               </Link>
-              <div className="ml-auto flex items-center gap-2">
+              <div className="flex items-center flex-wrap gap-2 sm:ml-auto">
                 {article.freshness !== "none" && (
                   <FreshnessStamp status={article.freshness} verified={article.freshnessVerified ?? undefined} />
                 )}

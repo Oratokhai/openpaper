@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { FileText, GraduationCap, BarChart3 } from "lucide-react";
+import { LandingMobileMenu } from "@/components/layout/landing-mobile-menu";
 import { IphoneArticle } from "@/components/mockup/iphone-article";
 import { OpusArticleBody } from "@/components/mockup/opus-article-body";
 import { listFeedArticles } from "@/db/articles";
@@ -18,7 +19,7 @@ export default async function LandingPage() {
 
       {/* ── Nav ─────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-8 h-20 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
             <span className="text-[#f5f3ee] text-2xl" style={{ fontFamily: "var(--font-fraunces)" }}>❦</span>
             <span className="text-[#f5f3ee] font-medium text-lg tracking-tight">Openpaper</span>
@@ -29,12 +30,15 @@ export default async function LandingPage() {
             <Link href="/models"  className="hover:text-[#f5f3ee] transition-colors">Models</Link>
           </nav>
 
-          <Link
-            href="/signup"
-            className="bg-[#606c38] text-white text-sm px-6 py-3 rounded-xl font-medium hover:bg-[#283618] transition-colors"
-          >
-            Start writing
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/signup"
+              className="bg-[#606c38] text-white text-sm px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-[#283618] transition-colors"
+            >
+              Start writing
+            </Link>
+            <LandingMobileMenu />
+          </div>
         </div>
       </header>
 
@@ -48,17 +52,17 @@ export default async function LandingPage() {
           - iPhone is absolutely positioned right, scaled up 2×, cropped at bottom
             so only the top ~half of the phone (screen, cover, title) is visible
         */}
-        <section className="relative overflow-hidden" style={{ minHeight: 860 }}>
+        <section className="relative overflow-hidden min-h-[600px] lg:min-h-[860px]">
 
           {/* Left: copy — vertically centred within the section */}
-          <div className="relative z-10 max-w-6xl mx-auto px-8 flex items-center" style={{ minHeight: 860 }}>
+          <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 flex items-center min-h-[600px] lg:min-h-[860px]">
             <div className="max-w-[560px]">
               <p className="text-[#606c38] text-[15px] font-medium tracking-wide mb-6">
                 Written by the people building it
               </p>
 
               <h1
-                className="text-[#f5f3ee] text-7xl md:text-8xl leading-[0.95] tracking-[-0.03em] mb-8"
+                className="text-[#f5f3ee] text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-0.03em] mb-8"
                 style={{ fontFamily: "var(--font-fraunces)" }}
               >
                 Write the
@@ -129,9 +133,9 @@ export default async function LandingPage() {
         </section>
 
         {/* ── Why Openpaper ───────────────────────────────────────────── */}
-        <section className="max-w-5xl mx-auto px-8 py-36 text-center">
+        <section className="max-w-5xl mx-auto px-8 py-20 md:py-36 text-center">
           <h2
-            className="text-[#f5f3ee] text-5xl mb-6"
+            className="text-[#f5f3ee] text-4xl sm:text-5xl mb-6"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Why Openpaper?
@@ -169,12 +173,12 @@ export default async function LandingPage() {
         </section>
 
         {/* ── Three kinds of publication ──────────────────────────────── */}
-        <section className="max-w-5xl mx-auto px-8 py-36 border-t border-white/[0.05]">
+        <section className="max-w-5xl mx-auto px-8 py-20 md:py-36 border-t border-white/[0.05]">
           <div className="text-center mb-20">
             <p className="text-[#606c38] text-[15px] font-medium tracking-wide mb-4">
               Three kinds of writing
             </p>
-            <h2 className="text-[#f5f3ee] text-5xl mb-6" style={{ fontFamily: "var(--font-fraunces)" }}>
+            <h2 className="text-[#f5f3ee] text-4xl sm:text-5xl mb-6" style={{ fontFamily: "var(--font-fraunces)" }}>
               However you want to publish
             </h2>
             <p className="text-[#969696] text-base max-w-xl mx-auto">
@@ -213,14 +217,14 @@ export default async function LandingPage() {
         </section>
 
         {/* ── AI-Native Features ──────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-8 py-36">
+        <section className="max-w-6xl mx-auto px-8 py-20 md:py-36">
           {/* Section header */}
           <div className="text-center mb-20">
             <p className="text-[#606c38] text-[15px] font-medium tracking-wide mb-4">
               Not just another Substack
             </p>
             <h2
-              className="text-[#f5f3ee] text-5xl mb-5"
+              className="text-[#f5f3ee] text-4xl sm:text-5xl mb-5"
               style={{ fontFamily: "var(--font-fraunces)" }}
             >
               Built for how AI people actually write
@@ -424,9 +428,9 @@ export default async function LandingPage() {
         </section>
 
         {/* ── Topics ──────────────────────────────────────────────────── */}
-        <section className="max-w-5xl mx-auto px-8 py-36 text-center">
+        <section className="max-w-5xl mx-auto px-8 py-20 md:py-36 text-center">
           <h2
-            className="text-[#f5f3ee] text-5xl mb-6"
+            className="text-[#f5f3ee] text-4xl sm:text-5xl mb-6"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Every corner of the AI era
@@ -459,9 +463,9 @@ export default async function LandingPage() {
 
         {/* ── Article cards (real latest) ─────────────────────────────── */}
         {latest.length > 0 && (
-        <section className="max-w-6xl mx-auto px-8 py-36">
+        <section className="max-w-6xl mx-auto px-8 py-20 md:py-36">
           <h2
-            className="text-[#f5f3ee] text-5xl text-center mb-5 leading-tight"
+            className="text-[#f5f3ee] text-4xl sm:text-5xl text-center mb-5 leading-tight"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             From the people building it
@@ -496,11 +500,11 @@ export default async function LandingPage() {
         )}
 
         {/* ── Cream growth panel ──────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-8 py-36">
+        <section className="max-w-6xl mx-auto px-8 py-20 md:py-36">
           <div className="rounded-3xl bg-[#fdf0d5] p-12 md:p-16 grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2
-                className="text-[#1a1a1a] text-5xl md:text-6xl leading-[1.02] mb-7"
+                className="text-[#1a1a1a] text-4xl sm:text-5xl md:text-6xl leading-[1.02] mb-7"
                 style={{ fontFamily: "var(--font-fraunces)" }}
               >
                 Your thinking

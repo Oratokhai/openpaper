@@ -339,7 +339,7 @@ export default function WritePage() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-[420px] bg-[#111] border-l border-white/[0.08] flex flex-col transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[420px] bg-[#111] border-l border-white/[0.08] flex flex-col transition-transform duration-300 ease-out ${
           panelOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
