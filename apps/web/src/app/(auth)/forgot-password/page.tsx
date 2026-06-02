@@ -98,7 +98,7 @@ export default function ForgotPasswordPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
-              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all"
+              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all"
             />
           </div>
           {error && (
@@ -107,7 +107,7 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={!isLoaded || submitting}
-            className="w-full py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitting ? "Sending…" : "Send reset code"}
           </button>
@@ -126,7 +126,7 @@ export default function ForgotPasswordPage() {
               placeholder="000000"
               maxLength={6}
               required
-              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[18px] text-[#f5f3ee] text-center tracking-[0.3em] placeholder:text-[#3a3a3a] focus:outline-none focus:border-[#6366f1]/60 transition-all"
+              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[18px] text-[#f5f3ee] text-center tracking-[0.3em] placeholder:text-[#3a3a3a] focus:outline-none focus:border-[#606c38]/60 transition-all"
             />
           </div>
           <div>
@@ -138,7 +138,7 @@ export default function ForgotPasswordPage() {
               placeholder="••••••••"
               required
               minLength={8}
-              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all"
+              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all"
             />
           </div>
           {error && (
@@ -147,7 +147,7 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={!isLoaded || submitting || code.length < 6}
-            className="w-full py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitting ? "Resetting…" : "Reset password & sign in"}
           </button>

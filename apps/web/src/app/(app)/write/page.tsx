@@ -20,12 +20,12 @@ const TYPE_OPTIONS: { value: PublicationType; label: string; description: string
 ];
 
 const COVER_OPTIONS = [
-  { id: "a", gradient: "from-[#6366f1] via-[#8b5cf6] to-[#ec4899]" },
-  { id: "b", gradient: "from-[#0891b2] to-[#0e7490]" },
-  { id: "c", gradient: "from-[#7c3aed] to-[#4338ca]" },
-  { id: "d", gradient: "from-[#10b981] to-[#06b6d4]" },
-  { id: "e", gradient: "from-[#f59e0b] to-[#ef4444]" },
-  { id: "f", gradient: "from-[#1e293b] to-[#0f172a]" },
+  { id: "a", gradient: "from-[#283618] via-[#3a4d22] to-[#606c38]" },
+  { id: "b", gradient: "from-[#1a2410] to-[#283618]" },
+  { id: "c", gradient: "from-[#606c38] to-[#283618]" },
+  { id: "d", gradient: "from-[#bc6c25] to-[#283618]" },
+  { id: "e", gradient: "from-[#283618] to-[#0a0a0a]" },
+  { id: "f", gradient: "from-[#3a4d22] via-[#606c38] to-[#283618]" },
 ];
 
 type Freshness = "current" | "aging" | "outdated" | "none";
@@ -242,7 +242,7 @@ export default function WritePage() {
             </button>
             <button
               onClick={() => setPanelOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#6366f1] text-white text-sm font-medium hover:bg-[#5457e0] transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors"
             >
               <Send className="w-3.5 h-3.5" />
               Publish
@@ -381,7 +381,7 @@ export default function WritePage() {
                       title={opt.description}
                       className={`flex flex-col items-center gap-1.5 px-2 py-3 rounded-xl border text-center transition-all ${
                         pubType === opt.value
-                          ? "border-[#6366f1]/60 bg-[#6366f1]/10 text-[#f5f3ee]"
+                          ? "border-[#606c38]/60 bg-[#606c38]/10 text-[#f5f3ee]"
                           : "border-white/[0.06] text-[#8d8d8d] hover:border-white/[0.12] hover:text-[#aaa]"
                       }`}
                     >
@@ -415,7 +415,7 @@ export default function WritePage() {
                         key={c.id}
                         onClick={() => setSelectedCover(c.id)}
                         className={`h-12 rounded-xl bg-gradient-to-br ${c.gradient} transition-all ring-2 ring-offset-2 ring-offset-[#111] ${
-                          selectedCover === c.id ? "ring-[#6366f1]" : "ring-transparent"
+                          selectedCover === c.id ? "ring-[#606c38]" : "ring-transparent"
                         }`}
                       />
                     ))}
@@ -442,7 +442,7 @@ export default function WritePage() {
                   onChange={(e) => setSubtitle(e.target.value)}
                   placeholder="A one-line hook for your article…"
                   rows={2}
-                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/50 resize-none transition-all"
+                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/50 resize-none transition-all"
                 />
               </section>
 
@@ -500,7 +500,7 @@ export default function WritePage() {
                   <button
                     onClick={() => setEmailDelivery((e) => !e)}
                     className={`shrink-0 mt-0.5 w-11 h-6 rounded-full transition-colors relative ${
-                      emailDelivery ? "bg-[#6366f1]" : "bg-white/[0.08]"
+                      emailDelivery ? "bg-[#606c38]" : "bg-white/[0.08]"
                     }`}
                   >
                     <span
@@ -527,7 +527,7 @@ export default function WritePage() {
               <button
                 onClick={() => save("published")}
                 disabled={publishing}
-                className="w-full py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-3.5 h-3.5" />
                 {publishing ? "Publishing…" : "Publish now"}
@@ -574,7 +574,7 @@ function PublishedState({
           href={`/${username}/${slug}`}
           target="_blank"
           rel="noreferrer"
-          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors"
+          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors"
         >
           <ExternalLink className="w-3.5 h-3.5" />
           View article

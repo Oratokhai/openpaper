@@ -66,7 +66,7 @@ export function FeedCard({ article, cover }: FeedCardProps) {
       {/* Footer: author + engagement */}
       <div className="flex items-center justify-between">
         <Link href={`/${article.author.username}`} className="flex items-center gap-3 group">
-          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-xs font-semibold">
+          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-xs font-semibold">
             {initials}
           </span>
           <span className="text-[15px] text-[#aaa] group-hover:text-[#f5f3ee] transition-colors">

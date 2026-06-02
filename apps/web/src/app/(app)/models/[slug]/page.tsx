@@ -93,12 +93,12 @@ export default async function ModelPage({
               </p>
               <p className="text-[#858585] text-sm mb-6 max-w-sm mx-auto">
                 Be the first to write about it. Mention{" "}
-                <span className="text-[#a78bfa]">@{model.name}</span> in any article and it
+                <span className="text-[#a3b18a]">@{model.name}</span> in any article and it
                 shows up here.
               </p>
               <Link
                 href="/write"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#6366f1] text-white text-sm font-medium hover:bg-[#5457e0] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors"
               >
                 <PenLine className="w-4 h-4" /> Write about {model.name}
               </Link>

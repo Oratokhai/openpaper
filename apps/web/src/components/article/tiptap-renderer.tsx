@@ -120,7 +120,7 @@ function renderNode(node: PMNode, key: string, ctx: { footnotes: string[] }): Re
     case "footnote": {
       const idx = ctx.footnotes.push(String(node.attrs?.text ?? ""));
       return (
-        <sup key={key} className="text-[#6366f1] font-medium">
+        <sup key={key} className="text-[#606c38] font-medium">
           [{idx}]
         </sup>
       );
@@ -129,7 +129,7 @@ function renderNode(node: PMNode, key: string, ctx: { footnotes: string[] }): Re
     case "blockMath":
     case "math":
       return (
-        <code key={key} className="text-[#a78bfa]">
+        <code key={key} className="text-[#a3b18a]">
           {String(node.attrs?.latex ?? node.attrs?.value ?? "")}
         </code>
       );
@@ -152,7 +152,7 @@ export function TiptapRenderer({ content }: { content: unknown }) {
           <ol className="space-y-2">
             {ctx.footnotes.map((n, i) => (
               <li key={i} className="flex gap-2 text-[13px] text-[#888] leading-relaxed">
-                <span className="text-[#6366f1] font-medium shrink-0">[{i + 1}]</span>
+                <span className="text-[#606c38] font-medium shrink-0">[{i + 1}]</span>
                 <span>{n}</span>
               </li>
             ))}

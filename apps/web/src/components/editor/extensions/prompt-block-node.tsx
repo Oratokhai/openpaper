@@ -45,7 +45,7 @@ function PromptBlockView({ node, updateAttributes, editor }: NodeViewProps) {
       data-drag-handle
     >
       <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-white/[0.06]">
-        <span className="text-[10px] uppercase tracking-widest font-medium text-[#6366f1]">
+        <span className="text-[10px] uppercase tracking-widest font-medium text-[#606c38]">
           Prompt
         </span>
         <input
@@ -78,7 +78,7 @@ function PromptBlockView({ node, updateAttributes, editor }: NodeViewProps) {
 function renderVariables(text: string) {
   return text.split(/(\{\{[^}]+\}\})/g).map((part, i) =>
     /^\{\{[^}]+\}\}$/.test(part) ? (
-      <span key={i} className="text-[#a78bfa] bg-[#a78bfa]/10 px-1 rounded">
+      <span key={i} className="text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded">
         {part}
       </span>
     ) : (

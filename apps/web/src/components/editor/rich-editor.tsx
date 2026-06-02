@@ -228,7 +228,7 @@ function Footnotes({ editor }: { editor: Editor }) {
       <ol className="space-y-2">
         {notes.map((note, i) => (
           <li key={i} className="flex gap-2 text-[13px] text-[#888] leading-relaxed">
-            <span className="text-[#6366f1] font-medium shrink-0">[{i + 1}]</span>
+            <span className="text-[#606c38] font-medium shrink-0">[{i + 1}]</span>
             <span>{note}</span>
           </li>
         ))}

@@ -36,7 +36,7 @@ export function ModelFollowButton({
       className={
         following
           ? "shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/[0.12] text-sm text-[#aaa] hover:text-[#f5f3ee] hover:border-white/[0.25] transition-all"
-          : "shrink-0 px-5 py-2.5 rounded-xl bg-[#6366f1] text-white text-sm font-medium hover:bg-[#5457e0] transition-colors"
+          : "shrink-0 px-5 py-2.5 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors"
       }
     >
       {following && <Check className="w-3.5 h-3.5" />}

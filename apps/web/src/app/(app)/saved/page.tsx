@@ -32,7 +32,7 @@ export default async function SavedPage() {
       <div className="sticky top-0 z-30 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/[0.04]">
         <div className="max-w-5xl mx-auto px-8 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Bookmark className="w-4 h-4 text-[#6366f1]" />
+            <Bookmark className="w-4 h-4 text-[#606c38]" />
             <span className="text-[#f5f3ee] text-[15px] font-medium">Saved</span>
             <span className="text-[12px] text-[#858585] bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 rounded-full">
               {savedArticles.length}
@@ -76,7 +76,7 @@ export default async function SavedPage() {
 
                       <div className="flex-1 min-w-0">
                         <Link href={`/${article.author.username}`} className="inline-flex items-center gap-2 mb-2 group/author">
-                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-[9px] font-bold shrink-0">
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-[9px] font-bold shrink-0">
                             {initials}
                           </div>
                           <span className="text-[13px] text-[#8d8d8d] group-hover/author:text-[#aaa] transition-colors">
@@ -145,7 +145,7 @@ export default async function SavedPage() {
                         <Link
                           key={m.slug}
                           href={`/models/${m.slug}`}
-                          className="text-[#a78bfa] bg-[#a78bfa]/10 hover:bg-[#a78bfa]/15 px-2.5 py-1 rounded-full text-[12px] font-medium transition-colors"
+                          className="text-[#a3b18a] bg-[#a3b18a]/10 hover:bg-[#a3b18a]/15 px-2.5 py-1 rounded-full text-[12px] font-medium transition-colors"
                         >
                           @{m.name}
                         </Link>
@@ -166,7 +166,7 @@ export default async function SavedPage() {
                             href={`/${author.username}`}
                             className="group flex items-center gap-3 py-2 hover:opacity-80 transition-opacity"
                           >
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-[11px] font-bold shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-[11px] font-bold shrink-0">
                               {ini}
                             </div>
                             <div className="min-w-0">
@@ -204,7 +204,7 @@ function EmptyState() {
       </p>
       <Link
         href="/home"
-        className="px-6 py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors"
+        className="px-6 py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors"
       >
         Browse articles
       </Link>

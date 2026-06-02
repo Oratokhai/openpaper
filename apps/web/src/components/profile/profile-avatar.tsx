@@ -41,7 +41,7 @@ export function ProfileAvatar({
     // eslint-disable-next-line @next/next/no-img-element
     <img src={avatarUrl} alt={name} className="w-24 h-24 rounded-full object-cover ring-4 ring-[#0a0a0a]" />
   ) : (
-    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-3xl font-bold ring-4 ring-[#0a0a0a]">
+    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-3xl font-bold ring-4 ring-[#0a0a0a]">
       {initials}
     </div>
   );

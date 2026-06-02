@@ -216,7 +216,7 @@ export async function getArticleForEdit(id: string): Promise<EditableArticle | n
     subtitle: a.subtitle ?? "",
     contentJson: a.content,
     tags: a.tags,
-    coverGradient: a.coverGradient ?? "from-[#6366f1] via-[#8b5cf6] to-[#ec4899]",
+    coverGradient: a.coverGradient ?? "from-[#283618] via-[#3a4d22] to-[#606c38]",
     coverImage: a.coverImage,
     freshness: a.freshness,
     type: a.type,

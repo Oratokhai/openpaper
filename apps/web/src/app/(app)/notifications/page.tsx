@@ -7,7 +7,7 @@ import { MarkNotificationsRead } from "@/components/notifications/mark-read";
 
 const ICONS = {
   like: { Icon: Heart, color: "text-rose-400", verb: "liked your article" },
-  comment: { Icon: MessageCircle, color: "text-[#6366f1]", verb: "commented on your article" },
+  comment: { Icon: MessageCircle, color: "text-[#606c38]", verb: "commented on your article" },
   follow: { Icon: UserPlus, color: "text-emerald-400", verb: "started following you" },
   subscribe: { Icon: Mail, color: "text-amber-400", verb: "subscribed to you" },
 } as const;
@@ -28,7 +28,7 @@ export default async function NotificationsPage() {
       {/* Sticky header */}
       <div className="sticky top-0 z-30 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/[0.04]">
         <div className="max-w-2xl mx-auto px-8 h-16 flex items-center gap-3">
-          <Bell className="w-4 h-4 text-[#6366f1]" />
+          <Bell className="w-4 h-4 text-[#606c38]" />
           <span className="text-[#f5f3ee] text-[15px] font-medium">Notifications</span>
           {notifications.length > 0 && (
             <span className="text-[12px] text-[#858585] bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 rounded-full">
@@ -61,7 +61,7 @@ export default async function NotificationsPage() {
                   key={n.id}
                   href={href(n)}
                   className={`flex items-start gap-4 py-4 px-2 -mx-2 rounded-xl transition-colors hover:bg-white/[0.02] ${
-                    n.read ? "" : "bg-[#6366f1]/[0.04]"
+                    n.read ? "" : "bg-[#606c38]/[0.04]"
                   }`}
                 >
                   <div className="relative shrink-0">
@@ -69,7 +69,7 @@ export default async function NotificationsPage() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={n.actor.avatarUrl} alt={n.actor.name} className="w-10 h-10 rounded-full object-cover" />
                     ) : (
-                      <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-xs font-semibold">
+                      <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-xs font-semibold">
                         {initials}
                       </span>
                     )}
@@ -86,7 +86,7 @@ export default async function NotificationsPage() {
                     <p className="text-[12px] text-[#858585] mt-0.5">{formatRelativeDate(n.createdAt)}</p>
                   </div>
 
-                  {!n.read && <span className="mt-2 w-2 h-2 rounded-full bg-[#6366f1] shrink-0" />}
+                  {!n.read && <span className="mt-2 w-2 h-2 rounded-full bg-[#606c38] shrink-0" />}
                 </Link>
               );
             })}

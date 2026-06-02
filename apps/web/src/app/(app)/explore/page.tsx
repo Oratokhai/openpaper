@@ -16,14 +16,14 @@ import {
 } from "@/db/articles";
 
 const topicGradients = [
-  "from-[#6366f1] to-[#8b5cf6]",
+  "from-[#606c38] to-[#283618]",
   "from-[#06b6d4] to-[#3b82f6]",
   "from-[#f59e0b] to-[#ef4444]",
-  "from-[#8b5cf6] to-[#ec4899]",
+  "from-[#283618] to-[#a3b18a]",
   "from-[#10b981] to-[#06b6d4]",
   "from-[#ef4444] to-[#f59e0b]",
-  "from-[#3b82f6] to-[#6366f1]",
-  "from-[#ec4899] to-[#8b5cf6]",
+  "from-[#3b82f6] to-[#606c38]",
+  "from-[#a3b18a] to-[#283618]",
 ];
 
 export default async function ExplorePage({
@@ -40,7 +40,7 @@ export default async function ExplorePage({
     <div className="max-w-6xl mx-auto px-8 py-12">
       {/* Header */}
       <div className="mb-8">
-        <p className="text-[#6366f1] text-[13px] font-medium mb-3">Written by the people building it</p>
+        <p className="text-[#606c38] text-[13px] font-medium mb-3">Written by the people building it</p>
         <h1 className="text-[#f5f3ee] text-5xl mb-3" style={{ fontFamily: "var(--font-fraunces)" }}>
           Explore
         </h1>
@@ -90,7 +90,7 @@ async function SearchResults({ query, userId }: { query: string; userId: string 
           <div className="flex flex-wrap gap-3">
             {writers.map((w) => (
               <Link key={w.username} href={`/${w.username}`} className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-4 py-3 hover:border-white/[0.14] transition-all">
-                <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-[11px] font-semibold">
+                <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-[11px] font-semibold">
                   {w.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
                 </span>
                 <div>
@@ -195,13 +195,13 @@ async function Discovery({ userId }: { userId: string | null }) {
               </div>
             )}
             <div>
-              <span className="text-[11px] text-[#6366f1] font-medium uppercase tracking-widest mb-4 inline-block">Featured</span>
+              <span className="text-[11px] text-[#606c38] font-medium uppercase tracking-widest mb-4 inline-block">Featured</span>
               <h2 className="text-[#f5f3ee] text-3xl md:text-4xl leading-tight mb-4 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-fraunces)" }}>
                 {featured.title}
               </h2>
               <p className="text-[#888] text-[15px] leading-relaxed mb-5 line-clamp-3">{featured.excerpt}</p>
               <div className="flex items-center gap-3 text-[14px] text-[#aaa]">
-                <span className="w-7 h-7 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-[10px] font-semibold">
+                <span className="w-7 h-7 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-[10px] font-semibold">
                   {featured.author.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
                 </span>
                 {featured.author.name}
@@ -214,7 +214,7 @@ async function Discovery({ userId }: { userId: string | null }) {
         <div className="mb-16 rounded-3xl border border-dashed border-white/[0.1] p-12 text-center">
           <p className="text-[#f5f3ee] text-xl mb-2" style={{ fontFamily: "var(--font-fraunces)" }}>Nothing published yet</p>
           <p className="text-[#8d8d8d] text-[14px] mb-6">Be the first to write about what you&apos;re building with AI.</p>
-          <Link href="/write" className="inline-block px-5 py-2.5 rounded-xl bg-[#6366f1] text-white text-sm font-medium hover:bg-[#5457e0] transition-colors">Start writing</Link>
+          <Link href="/write" className="inline-block px-5 py-2.5 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors">Start writing</Link>
         </div>
       )}
 

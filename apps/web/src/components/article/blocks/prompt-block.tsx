@@ -13,7 +13,7 @@ function renderWithVariables(text: string) {
     /^\{\{[^}]+\}\}$/.test(part) ? (
       <span
         key={i}
-        className="text-[#a78bfa] bg-[#a78bfa]/10 px-1 rounded"
+        className="text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded"
       >
         {part}
       </span>
@@ -47,7 +47,7 @@ export function PromptBlock({
   return (
     <div className="not-prose my-7 rounded-xl bg-[#0a0a0a] border border-white/[0.08] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]">
-        <span className="text-[10px] text-[#6366f1] font-medium uppercase tracking-widest">
+        <span className="text-[10px] text-[#606c38] font-medium uppercase tracking-widest">
           Prompt
         </span>
         {model && (
@@ -65,7 +65,7 @@ export function PromptBlock({
         </span>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-1.5 text-[11px] text-[#6366f1] font-medium hover:text-[#818cf8] transition-colors"
+          className="flex items-center gap-1.5 text-[11px] text-[#606c38] font-medium hover:text-[#818cf8] transition-colors"
         >
           {copied ? (
             <>

@@ -67,7 +67,7 @@ export function SidebarRail({
             >
               <Icon className="w-5 h-5" />
               {item.href === "/notifications" && unreadNotifications > 0 && (
-                <span className="absolute top-1.5 right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-[#6366f1] text-white text-[10px] font-semibold flex items-center justify-center">
+                <span className="absolute top-1.5 right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-[#606c38] text-white text-[10px] font-semibold flex items-center justify-center">
                   {unreadNotifications > 9 ? "9+" : unreadNotifications}
                 </span>
               )}
@@ -81,7 +81,7 @@ export function SidebarRail({
         href="/write"
         title="Write"
         aria-label="Write a new article"
-        className="w-11 h-11 rounded-xl bg-[#6366f1] hover:bg-[#5457e0] flex items-center justify-center text-white transition-colors mb-5"
+        className="w-11 h-11 rounded-xl bg-[#606c38] hover:bg-[#283618] flex items-center justify-center text-white transition-colors mb-5"
       >
         <PenLine className="w-5 h-5" />
       </Link>
@@ -95,7 +95,7 @@ export function SidebarRail({
               aria-label="Account menu"
               aria-haspopup="menu"
               aria-expanded={menuOpen}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-sm font-semibold hover:opacity-80 transition-opacity"
+              className="w-10 h-10 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-sm font-semibold hover:opacity-80 transition-opacity"
             >
               {user.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element

@@ -46,7 +46,7 @@
 | Display font | Fraunces (variable: opsz, SOFT, WONK axes) | 2026-05-31 |
 | Prose font | Lora (serif, article body) | 2026-05-31 |
 | UI font | Geist Sans | 2026-05-31 |
-| Design language | Dark (#0a0a0a bg), indigo accent (#6366f1), warm cream panels (#efeae0) | 2026-05-31 |
+| Design language | Dark (#0a0a0a bg), ~~indigo accent (#6366f1), cream (#efeae0)~~ → **forest/olive green accent (#606c38 / #283618 / sage #a3b18a), cream #fdf0d5** (palette swap 2026-06-02) | 2026-05-31 |
 | AI-native features | Prompt Blocks, Model Output Blocks, Model Mentions & Pages, AI Taxonomy, Freshness Stamps | 2026-05-31 |
 | Backend stack | Clerk v7 (auth) · Neon Postgres + Drizzle (DB) · Resend (email) · Vercel (host) | 2026-06-02 |
 | Publication types | **Article (default, incl. opinions), Tutorial, Benchmark** — "Opinion" considered then dropped | 2026-06-02 |

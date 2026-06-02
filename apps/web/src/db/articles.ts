@@ -41,7 +41,7 @@ function toFeedArticle(a: ArticleRow, u: Pick<UserRow, "name" | "username" | "av
     models: a.models,
     likes: a.likeCount,
     comments: a.commentCount,
-    cover: a.coverGradient ?? "from-[#6366f1] via-[#8b5cf6] to-[#ec4899]",
+    cover: a.coverGradient ?? "from-[#283618] via-[#3a4d22] to-[#606c38]",
     coverImage: a.coverImage,
     type: a.type,
     liked: false,

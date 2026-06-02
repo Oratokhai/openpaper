@@ -11,8 +11,9 @@
 **Principles:**
 - Large, breathing elements — hero text at `text-7xl/8xl`, section headings at `text-5xl`, generous `py-36` section spacing
 - Dark-first, warm not cold — `#0a0a0a` not pure black, `#f5f3ee` not pure white
-- Indigo accent (`#6366f1`) as the single brand color — used sparingly for CTAs, active states, AI block labels
-- Cream panels (`#efeae0`) for contrast sections (growth CTA)
+- Forest/olive green accent as the single brand color — used sparingly for CTAs, active states, AI block labels. `#606c38` (olive) as the workhorse accent (legible as both fill and text on dark), `#283618` (deep green) for hover/depth, `#a3b18a` (sage) for light accent text/highlights
+- Cream panels (`#fdf0d5`) for contrast sections (growth CTA)
+- **Retired 2026-06-02:** indigo/violet/pink accent (`#6366f1`/`#8b5cf6`/`#a78bfa`/`#ec4899`) and old cream `#efeae0` — swapped wholesale to the green/cream earthy palette per user direction
 - Rounded generously — `rounded-2xl` cards, `rounded-3xl` panels, `rounded-xl` buttons
 
 ---
@@ -39,20 +40,24 @@
 | `--card` | `#121212` | Card surface |
 | `--border` | `rgba(255,255,255,0.07)` | Subtle borders |
 | `--muted-foreground` | `#888` | Secondary text |
-| `--brand` | `#6366f1` | Indigo accent |
-| `--brand-hover` | `#5457e0` | Indigo hover |
-| `--cream` | `#efeae0` | Warm cream panel |
-| `--cream-foreground` | `#1a1a1a` | Cream text |
+| `--brand` | `#606c38` | Olive green accent (fill + text on dark) |
+| `--brand-hover` | `#283618` | Deep green hover |
+| `--brand-muted` | `rgba(96,108,56,0.14)` | Subtle accent tint bg |
+| `--cream` | `#fdf0d5` | Warm cream panel |
+| `--cream-foreground` | `#283618` | Cream text (deep green) |
 
-**Gradient avatars:** `from-[#6366f1] to-[#8b5cf6]` — all user avatars.
-**Old tokens to avoid (still in article-card.tsx):** `#f0ede8`, `#0c0c0c`, cream avatar gradient — mark for cleanup.
+**Sage (light accent):** `#a3b18a` — variable highlights, light accent text, banner radial glow.
+**Default cover/banner gradient:** `from-[#283618] via-[#3a4d22] to-[#606c38]` (dark→olive; covers carry white overlay titles so cover gradients must stay dark, never end light). Earthy cover presets in `write/page.tsx` include a terracotta `#bc6c25` option from the same palette family.
+
+**Gradient avatars:** `from-[#606c38] to-[#283618]` — all user avatars.
+**Old tokens to avoid:** `#f0ede8`, `#0c0c0c`, retired indigo/violet `#6366f1`/`#8b5cf6`/`#ec4899`/`#a78bfa`, old cream `#efeae0`.
 
 ---
 
 ## Component Patterns
 
 ### Buttons
-- Primary: `bg-[#6366f1] text-white px-6 py-3 rounded-xl hover:bg-[#5457e0]`
+- Primary: `bg-[#606c38] text-white px-6 py-3 rounded-xl hover:bg-[#283618]`
 - Secondary: `border border-white/[0.1] text-[#aaa] px-6 py-3 rounded-xl hover:border-white/[0.25]`
 - Cream: `bg-[#1a1a1a] text-white px-7 py-3.5 rounded-xl` (on cream panels)
 
@@ -62,8 +67,8 @@
 
 ### AI-Native Blocks
 All use: `rounded-xl bg-[#0a0a0a] border border-white/[0.08]`
-- Label: `text-[10px] text-[#6366f1] uppercase tracking-widest`
-- Variable highlights: `text-[#a78bfa] bg-[#a78bfa]/10 px-1 rounded`
+- Label: `text-[10px] text-[#606c38] uppercase tracking-widest`
+- Variable highlights: `text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded`
 
 ---
 
@@ -88,7 +93,7 @@ Matched to Paragraph.com's scale after side-by-side comparison:
 Unique signature layout. Not found elsewhere:
 
 ```
-[Reading progress bar — thin indigo, fixed top]
+[Reading progress bar — thin olive green, fixed top]
 [Left dock]     [Center ~680px]          [Right rail]
   ♥ likes        Cover image              Table of Contents
   💬 comments    Freshness stamp          Models in this article
@@ -133,4 +138,4 @@ Mirrors Substack's toolbar pattern (decided after analysing their options):
 ---
 
 *Tags: `#design` `#style` `#typography` `#tokens`*
-*Last updated: 2026-06-01*
+*Last updated: 2026-06-02 — palette swap: indigo/violet → forest/olive green (`#283618`/`#606c38`/`#a3b18a`) + cream `#fdf0d5`*

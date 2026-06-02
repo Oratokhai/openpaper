@@ -128,7 +128,7 @@ export default function SignUpPage() {
             placeholder="000000"
             maxLength={6}
             required
-            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[22px] text-[#f5f3ee] text-center tracking-[0.3em] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 transition-all"
+            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[22px] text-[#f5f3ee] text-center tracking-[0.3em] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 transition-all"
           />
 
           {error && (
@@ -138,7 +138,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={!isLoaded || loading || code.length < 6}
-            className="w-full py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Verifying…" : "Verify email"}
           </button>
@@ -176,30 +176,30 @@ export default function SignUpPage() {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-[12px] text-[#8d8d8d] mb-2">First name</label>
-            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Ada" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all" />
+            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Ada" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all" />
           </div>
           <div>
             <label className="block text-[12px] text-[#8d8d8d] mb-2">Last name</label>
-            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Lovelace" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all" />
+            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Lovelace" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all" />
           </div>
         </div>
 
         <div>
           <label className="block text-[12px] text-[#8d8d8d] mb-2">Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all" />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all" />
         </div>
 
         <div>
           <label className="block text-[12px] text-[#8d8d8d] mb-2">Username</label>
           <div className="relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[14px] text-[#6e6e6e] pointer-events-none">@</span>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))} placeholder="adalovelace" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl pl-8 pr-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all" />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))} placeholder="adalovelace" required className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl pl-8 pr-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all" />
           </div>
         </div>
 
         <div>
           <label className="block text-[12px] text-[#8d8d8d] mb-2">Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={8} className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#6366f1]/60 focus:bg-white/[0.06] transition-all" />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={8} className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all" />
         </div>
 
         {error && (
@@ -210,7 +210,7 @@ export default function SignUpPage() {
             Required for custom sign-up flows — without it, create() fails with captcha_invalid. */}
         <div id="clerk-captcha" className="empty:hidden flex justify-center" />
 
-        <button type="submit" disabled={!isLoaded || loading} className="w-full py-3 rounded-xl bg-[#6366f1] text-white text-[14px] font-medium hover:bg-[#5457e0] transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed">
+        <button type="submit" disabled={!isLoaded || loading} className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed">
           {loading ? "Creating account…" : "Create account"}
         </button>
       </form>
