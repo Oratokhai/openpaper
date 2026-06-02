@@ -16,6 +16,7 @@ interface FeedCardProps {
     comments: number;
     liked?: boolean;
     saved?: boolean;
+    coverImage?: string | null;
   };
   cover: string;
 }
@@ -25,16 +26,21 @@ export function FeedCard({ article, cover }: FeedCardProps) {
 
   return (
     <article className="border-b border-white/[0.06] py-10 first:pt-0">
-      {/* Cover image */}
+      {/* Cover */}
       <Link href={`/${article.author.username}/${article.id}`}>
-        <div className={`h-72 rounded-2xl bg-gradient-to-br ${cover} mb-6 flex items-center justify-center overflow-hidden`}>
-          <span
-            className="text-white/95 text-4xl px-10 text-center leading-tight"
-            style={{ fontFamily: "var(--font-fraunces)" }}
-          >
-            {article.title}
-          </span>
-        </div>
+        {article.coverImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={article.coverImage} alt={article.title} className="h-72 w-full rounded-2xl object-cover mb-6" />
+        ) : (
+          <div className={`h-72 rounded-2xl bg-gradient-to-br ${cover} mb-6 flex items-center justify-center overflow-hidden`}>
+            <span
+              className="text-white/95 text-4xl px-10 text-center leading-tight"
+              style={{ fontFamily: "var(--font-fraunces)" }}
+            >
+              {article.title}
+            </span>
+          </div>
+        )}
       </Link>
 
       {/* Publication / topic badge */}

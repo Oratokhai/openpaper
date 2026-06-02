@@ -5,8 +5,9 @@ import type { Editor } from "@tiptap/react";
 import { mockTags } from "@/lib/mock-data";
 import {
   Eye, Pencil, Settings, Send, ChevronDown, X,
-  Mail, Zap, Clock, AlertTriangle, CheckCircle, Copy, ExternalLink,
+  Mail, Zap, Clock, AlertTriangle, CheckCircle, Copy, ExternalLink, ImagePlus,
 } from "lucide-react";
+import { upload } from "@vercel/blob/client";
 import { AutoTextarea } from "@/components/editor/auto-textarea";
 import { RichEditor } from "@/components/editor/rich-editor";
 import { publishArticle, getArticleForEdit, type PublicationType } from "./actions";
@@ -48,6 +49,10 @@ export default function WritePage() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [subtitle, setSubtitle] = useState("");
   const [selectedCover, setSelectedCover] = useState("a");
+  const [coverImage, setCoverImage] = useState<string | null>(null);
+  const [uploadingCover, setUploadingCover] = useState(false);
+  const [coverError, setCoverError] = useState("");
+  const coverInputRef = useRef<HTMLInputElement>(null);
   const [freshness, setFreshness] = useState<Freshness>("none");
   const [pubType, setPubType] = useState<PublicationType>("article");
   const [emailDelivery, setEmailDelivery] = useState(true);
@@ -83,6 +88,7 @@ export default function WritePage() {
         setPubType(a.type);
         setEmailDelivery(a.emailDelivery);
         setSelectedCover(COVER_OPTIONS.find((c) => c.gradient === a.coverGradient)?.id ?? "a");
+        setCoverImage(a.coverImage);
         pendingContent.current = a.contentJson;
         if (editorRef.current && a.contentJson) editorRef.current.commands.setContent(a.contentJson as object);
       })
@@ -101,6 +107,23 @@ export default function WritePage() {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag].slice(0, 3)
     );
+  };
+
+  const handleCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setCoverError("");
+    setUploadingCover(true);
+    try {
+      const blob = await upload(file.name, file, { access: "public", handleUploadUrl: "/api/upload" });
+      setCoverImage(blob.url);
+    } catch (err) {
+      console.error("[cover upload] failed:", err);
+      setCoverError("Upload failed — image storage may not be configured yet.");
+    } finally {
+      setUploadingCover(false);
+    }
   };
 
   const save = async (status: "draft" | "published") => {
@@ -146,6 +169,7 @@ export default function WritePage() {
       tags: selectedTags,
       models: [...models],
       coverGradient,
+      coverImage,
       freshness,
       type: pubType,
       emailDelivery,
@@ -371,17 +395,43 @@ export default function WritePage() {
               {/* Cover */}
               <section>
                 <p className="text-[11px] uppercase tracking-widest text-[#858585] mb-3">Cover</p>
-                <div className="grid grid-cols-6 gap-2">
-                  {COVER_OPTIONS.map((c) => (
+
+                {coverImage ? (
+                  <div className="relative mb-3 rounded-xl overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={coverImage} alt="Cover preview" className="w-full h-28 object-cover" />
                     <button
-                      key={c.id}
-                      onClick={() => setSelectedCover(c.id)}
-                      className={`h-12 rounded-xl bg-gradient-to-br ${c.gradient} transition-all ring-2 ring-offset-2 ring-offset-[#111] ${
-                        selectedCover === c.id ? "ring-[#6366f1]" : "ring-transparent"
-                      }`}
-                    />
-                  ))}
-                </div>
+                      onClick={() => setCoverImage(null)}
+                      className="absolute top-2 right-2 w-7 h-7 rounded-lg bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+                      title="Remove image"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-6 gap-2 mb-3">
+                    {COVER_OPTIONS.map((c) => (
+                      <button
+                        key={c.id}
+                        onClick={() => setSelectedCover(c.id)}
+                        className={`h-12 rounded-xl bg-gradient-to-br ${c.gradient} transition-all ring-2 ring-offset-2 ring-offset-[#111] ${
+                          selectedCover === c.id ? "ring-[#6366f1]" : "ring-transparent"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                <button
+                  onClick={() => coverInputRef.current?.click()}
+                  disabled={uploadingCover}
+                  className="flex items-center gap-2 text-[13px] text-[#aaa] border border-white/[0.1] rounded-lg px-3 py-2 hover:text-[#f5f3ee] hover:border-white/[0.2] transition-all disabled:opacity-50"
+                >
+                  <ImagePlus className="w-3.5 h-3.5" />
+                  {uploadingCover ? "Uploading…" : coverImage ? "Replace image" : "Upload an image"}
+                </button>
+                {coverError && <p className="text-[12px] text-rose-400 mt-2">{coverError}</p>}
+                <input ref={coverInputRef} type="file" accept="image/*" onChange={handleCoverUpload} className="hidden" />
               </section>
 
               {/* Subtitle */}

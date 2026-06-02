@@ -67,7 +67,12 @@ export default async function SavedPage() {
                       key={article.articleId}
                       className="group flex items-start gap-5 py-5 border-b border-white/[0.06] hover:border-white/[0.1] transition-colors"
                     >
-                      <div className={`hidden sm:block w-20 h-16 rounded-xl shrink-0 bg-gradient-to-br ${article.cover}`} />
+                      {article.coverImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={article.coverImage} alt="" className="hidden sm:block w-20 h-16 rounded-xl shrink-0 object-cover" />
+                      ) : (
+                        <div className={`hidden sm:block w-20 h-16 rounded-xl shrink-0 bg-gradient-to-br ${article.cover}`} />
+                      )}
 
                       <div className="flex-1 min-w-0">
                         <Link href={`/${article.author.username}`} className="inline-flex items-center gap-2 mb-2 group/author">

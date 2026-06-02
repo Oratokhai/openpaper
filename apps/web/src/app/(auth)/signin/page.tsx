@@ -52,7 +52,11 @@ export default function SignInPage() {
   };
 
   const handleOAuth = (provider: "oauth_github" | "oauth_google") => {
-    if (!isLoaded || isSignedIn) return;
+    if (isSignedIn) {
+      router.push("/home");
+      return;
+    }
+    if (!isLoaded) return;
     signIn.authenticateWithRedirect({
       strategy: provider,
       redirectUrl: "/sso-callback",

@@ -19,6 +19,7 @@ export type FeedArticle = {
   likes: number;
   comments: number;
   cover: string; // gradient classes
+  coverImage: string | null; // uploaded image URL (overrides gradient)
   type: PublicationType;
   liked: boolean;
   saved: boolean;
@@ -41,6 +42,7 @@ function toFeedArticle(a: ArticleRow, u: Pick<UserRow, "name" | "username" | "av
     likes: a.likeCount,
     comments: a.commentCount,
     cover: a.coverGradient ?? "from-[#6366f1] via-[#8b5cf6] to-[#ec4899]",
+    coverImage: a.coverImage,
     type: a.type,
     liked: false,
     saved: false,

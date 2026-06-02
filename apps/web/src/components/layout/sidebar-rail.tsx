@@ -43,7 +43,7 @@ export function SidebarRail({
   return (
     <aside className="fixed left-0 top-0 bottom-0 z-40 w-[76px] flex flex-col items-center py-6 bg-[#0a0a0a]">
       {/* Logo */}
-      <Link href="/" className="mb-9 text-[#f5f3ee] text-3xl" style={{ fontFamily: "var(--font-fraunces)" }}>
+      <Link href={isSignedIn ? "/home" : "/"} aria-label="Openpaper home" className="mb-9 text-[#f5f3ee] text-3xl" style={{ fontFamily: "var(--font-fraunces)" }}>
         ❦
       </Link>
 

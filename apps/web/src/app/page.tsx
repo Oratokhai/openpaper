@@ -1,13 +1,16 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 import { FileText, GraduationCap, BarChart3 } from "lucide-react";
 import { IphoneArticle } from "@/components/mockup/iphone-article";
 import { OpusArticleBody } from "@/components/mockup/opus-article-body";
 import { listFeedArticles } from "@/db/articles";
 
-// Re-fetch the showcase articles periodically instead of freezing them at build.
-export const revalidate = 300;
-
 export default async function LandingPage() {
+  // Signed-in users belong in the app, not the marketing landing.
+  const { userId } = await auth();
+  if (userId) redirect("/home");
+
   const latest = await listFeedArticles(4);
 
   return (
@@ -474,7 +477,12 @@ export default async function LandingPage() {
                 href={`/${a.author.username}/${a.id}`}
                 className="group rounded-2xl border border-white/[0.07] bg-[#121212] overflow-hidden hover:border-white/[0.14] transition-all"
               >
-                <div className={`h-40 bg-gradient-to-br ${a.cover}`} />
+                {a.coverImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={a.coverImage} alt={a.title} className="h-40 w-full object-cover" />
+                ) : (
+                  <div className={`h-40 bg-gradient-to-br ${a.cover}`} />
+                )}
                 <div className="p-5">
                   <h3 className="text-[#e8e6e0] text-base font-medium leading-snug mb-3 line-clamp-2 group-hover:text-white transition-colors">
                     {a.title}

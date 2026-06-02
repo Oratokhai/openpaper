@@ -87,7 +87,11 @@ export default function SignUpPage() {
   };
 
   const handleOAuth = (provider: "oauth_github" | "oauth_google") => {
-    if (!isLoaded || isSignedIn) return;
+    if (isSignedIn) {
+      router.push("/home");
+      return;
+    }
+    if (!isLoaded) return;
     signUp.authenticateWithRedirect({
       strategy: provider,
       redirectUrl: "/sso-callback",

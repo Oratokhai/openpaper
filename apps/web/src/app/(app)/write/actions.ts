@@ -19,6 +19,7 @@ export type PublishInput = {
   tags: string[];
   models: string[];
   coverGradient: string;
+  coverImage: string | null;
   freshness: Freshness;
   type: PublicationType;
   emailDelivery: boolean;
@@ -113,6 +114,7 @@ export async function publishArticle(input: PublishInput): Promise<PublishResult
         excerpt,
         content: input.contentJson,
         coverGradient: input.coverGradient,
+        coverImage: input.coverImage,
         status: input.status,
         type: input.type,
         tags: input.tags,
@@ -153,6 +155,7 @@ export async function publishArticle(input: PublishInput): Promise<PublishResult
           excerpt,
           content: input.contentJson,
           coverGradient: input.coverGradient,
+          coverImage: input.coverImage,
           status: input.status,
           type: input.type,
           tags: input.tags,
@@ -192,6 +195,7 @@ export type EditableArticle = {
   contentJson: unknown;
   tags: string[];
   coverGradient: string;
+  coverImage: string | null;
   freshness: Freshness;
   type: PublicationType;
   emailDelivery: boolean;
@@ -212,6 +216,7 @@ export async function getArticleForEdit(id: string): Promise<EditableArticle | n
     contentJson: a.content,
     tags: a.tags,
     coverGradient: a.coverGradient ?? "from-[#6366f1] via-[#8b5cf6] to-[#ec4899]",
+    coverImage: a.coverImage,
     freshness: a.freshness,
     type: a.type,
     emailDelivery: a.emailDelivery,

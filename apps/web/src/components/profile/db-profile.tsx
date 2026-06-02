@@ -2,6 +2,7 @@ import { Users, Heart, FileText } from "lucide-react";
 import { FeedCard } from "@/components/article/feed-card";
 import { FollowButton } from "./follow-button";
 import { SubscribeButton } from "./subscribe-button";
+import { ProfileAvatar } from "./profile-avatar";
 import { formatDate } from "@/lib/utils";
 import type { FeedArticle } from "@/db/articles";
 import type { users } from "@/db/schema";
@@ -23,7 +24,6 @@ export function DbProfile({
   isFollowing?: boolean;
   isSubscribed?: boolean;
 }) {
-  const initials = user.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
   const totalLikes = articles.reduce((sum, a) => sum + a.likes, 0);
 
   return (
@@ -42,18 +42,7 @@ export function DbProfile({
         </div>
 
         <div className="relative z-10 px-2 -mt-12 flex items-end justify-between gap-4">
-          {user.avatarUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={user.avatarUrl}
-              alt={user.name}
-              className="w-24 h-24 rounded-full object-cover ring-4 ring-[#0a0a0a] shrink-0"
-            />
-          ) : (
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center text-white text-3xl font-bold ring-4 ring-[#0a0a0a] shrink-0">
-              {initials}
-            </div>
-          )}
+          <ProfileAvatar avatarUrl={user.avatarUrl} name={user.name} isSelf={isSelf} />
           {isSelf ? (
             <a
               href="/drafts"

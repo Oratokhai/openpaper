@@ -184,11 +184,16 @@ async function Discovery({ userId }: { userId: string | null }) {
       {featured ? (
         <Link href={`/${featured.author.username}/${featured.id}`} className="group block mb-16">
           <div className="grid md:grid-cols-2 gap-8 items-center rounded-3xl border border-white/[0.07] bg-white/[0.02] p-6 md:p-8 hover:border-white/[0.14] transition-all">
-            <div className={`h-64 md:h-72 rounded-2xl bg-gradient-to-br ${featured.cover} flex items-center justify-center overflow-hidden`}>
-              <span className="text-white/95 text-2xl md:text-3xl px-8 text-center leading-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
-                {featured.title}
-              </span>
-            </div>
+            {featured.coverImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={featured.coverImage} alt={featured.title} className="h-64 md:h-72 w-full rounded-2xl object-cover" />
+            ) : (
+              <div className={`h-64 md:h-72 rounded-2xl bg-gradient-to-br ${featured.cover} flex items-center justify-center overflow-hidden`}>
+                <span className="text-white/95 text-2xl md:text-3xl px-8 text-center leading-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
+                  {featured.title}
+                </span>
+              </div>
+            )}
             <div>
               <span className="text-[11px] text-[#6366f1] font-medium uppercase tracking-widest mb-4 inline-block">Featured</span>
               <h2 className="text-[#f5f3ee] text-3xl md:text-4xl leading-tight mb-4 group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-fraunces)" }}>

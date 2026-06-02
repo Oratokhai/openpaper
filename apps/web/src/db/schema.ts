@@ -66,6 +66,7 @@ export const articles = pgTable(
     excerpt: text("excerpt"),
     content: jsonb("content"), // Tiptap document JSON
     coverGradient: text("cover_gradient"),
+    coverImage: text("cover_image"), // uploaded image URL (overrides gradient when set)
     status: articleStatus("status").default("draft").notNull(),
     type: articleType("type").default("article").notNull(),
     tags: text("tags").array().default([]).notNull(),

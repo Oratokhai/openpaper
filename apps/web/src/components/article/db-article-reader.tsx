@@ -64,14 +64,19 @@ export function DbArticleReader({
 
           {/* Center: the article */}
           <article className="flex-1 min-w-0 max-w-[680px] mx-auto">
-            <div className={`relative h-72 rounded-2xl overflow-hidden mb-8 bg-gradient-to-br ${meta.cover} flex items-center justify-center`}>
-              <span
-                className="text-white/95 text-3xl md:text-4xl px-10 text-center leading-tight"
-                style={{ fontFamily: "var(--font-fraunces)" }}
-              >
-                {meta.title}
-              </span>
-            </div>
+            {meta.coverImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={meta.coverImage} alt={meta.title} className="h-72 w-full rounded-2xl object-cover mb-8" />
+            ) : (
+              <div className={`relative h-72 rounded-2xl overflow-hidden mb-8 bg-gradient-to-br ${meta.cover} flex items-center justify-center`}>
+                <span
+                  className="text-white/95 text-3xl md:text-4xl px-10 text-center leading-tight"
+                  style={{ fontFamily: "var(--font-fraunces)" }}
+                >
+                  {meta.title}
+                </span>
+              </div>
+            )}
 
             {meta.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-5">
