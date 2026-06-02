@@ -129,6 +129,14 @@ export async function toggleSubscribe(
   return { ok: true, subscribed: !existing };
 }
 
+export async function updateBanner(url: string | null): Promise<{ ok: boolean }> {
+  const { userId } = await auth();
+  if (!userId) return { ok: false };
+  // syncCurrentUser never touches banner_url, so this persists across syncs.
+  await db.update(users).set({ bannerUrl: url, updatedAt: new Date() }).where(eq(users.id, userId));
+  return { ok: true };
+}
+
 export async function markNotificationsRead(): Promise<{ ok: boolean }> {
   const { userId } = await auth();
   if (!userId) return { ok: false };

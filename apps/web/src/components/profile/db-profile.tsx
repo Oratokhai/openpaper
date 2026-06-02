@@ -3,6 +3,7 @@ import { FeedCard } from "@/components/article/feed-card";
 import { FollowButton } from "./follow-button";
 import { SubscribeButton } from "./subscribe-button";
 import { ProfileAvatar } from "./profile-avatar";
+import { ProfileBanner } from "./profile-banner";
 import { formatDate } from "@/lib/utils";
 import type { FeedArticle } from "@/db/articles";
 import type { users } from "@/db/schema";
@@ -30,16 +31,7 @@ export function DbProfile({
     <div className="max-w-2xl mx-auto px-6 py-10">
       {/* Banner */}
       <div className="mb-6">
-        <div className="h-40 rounded-3xl bg-gradient-to-br from-[#6366f1] via-[#8b5cf6] to-[#312e81] relative overflow-hidden">
-          {user.bannerUrl && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={user.bannerUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          )}
-          <div
-            className="absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(ellipse at 30% 20%, #ec4899 0%, transparent 60%)" }}
-          />
-        </div>
+        <ProfileBanner bannerUrl={user.bannerUrl} isSelf={isSelf} />
 
         <div className="relative z-10 px-2 -mt-12 flex items-end justify-between gap-4">
           <ProfileAvatar avatarUrl={user.avatarUrl} name={user.name} isSelf={isSelf} />

@@ -9,6 +9,7 @@ import { TableOfContents } from "./table-of-contents";
 import { FreshnessStamp } from "./blocks/freshness-stamp";
 import { TiptapRenderer, extractToc } from "./tiptap-renderer";
 import { Comments } from "./comments";
+import { DeleteArticleButton } from "./delete-article-button";
 import { FollowButton } from "@/components/profile/follow-button";
 import { SubscribeButton } from "@/components/profile/subscribe-button";
 import type { EngagementState, CommentView } from "@/db/interactions";
@@ -123,12 +124,15 @@ export function DbArticleReader({
                   <FreshnessStamp status={article.freshness} verified={article.freshnessVerified ?? undefined} />
                 )}
                 {isOwner ? (
-                  <Link
-                    href={`/write?edit=${article.id}`}
-                    className="text-[13px] text-[#888] border border-white/[0.1] rounded-lg px-3 py-1.5 hover:text-[#f5f3ee] hover:border-white/[0.2] transition-all"
-                  >
-                    Edit
-                  </Link>
+                  <>
+                    <Link
+                      href={`/write?edit=${article.id}`}
+                      className="text-[13px] text-[#888] border border-white/[0.1] rounded-lg px-3 py-1.5 hover:text-[#f5f3ee] hover:border-white/[0.2] transition-all"
+                    >
+                      Edit
+                    </Link>
+                    <DeleteArticleButton articleId={article.id} redirectTo={`/${author.username}`} />
+                  </>
                 ) : (
                   <>
                     <SubscribeButton writerId={author.id} initialSubscribed={isSubscribed} />

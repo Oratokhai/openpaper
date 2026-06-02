@@ -224,6 +224,21 @@ export async function getArticleForEdit(id: string): Promise<EditableArticle | n
   };
 }
 
+/* ── Delete an article (owner only) ────────────────────────────────────────── */
+
+export async function deleteArticle(id: string): Promise<{ ok: boolean; error?: string }> {
+  const { userId } = await auth();
+  if (!userId) return { ok: false, error: "auth" };
+
+  const [a] = await db.select({ authorId: articles.authorId }).from(articles).where(eq(articles.id, id)).limit(1);
+  if (!a) return { ok: false, error: "not found" };
+  if (a.authorId !== userId) return { ok: false, error: "forbidden" };
+
+  // likes/saves/comments/notifications cascade-delete via FK.
+  await db.delete(articles).where(eq(articles.id, id));
+  return { ok: true };
+}
+
 /* ── List the current user's drafts ────────────────────────────────────────── */
 
 export type DraftSummary = { id: string; title: string; updatedAt: string };
