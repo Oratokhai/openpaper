@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# next.js
+.next/
+**/.next/
+out/
+**/out/
+
+# env / secrets — never commit
+.env
+.env.*
+**/.env
+**/.env.*
+
+# build / cache
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+
+# os / editor
+.DS_Store
+**/.DS_Store
+*.log
+
+# drizzle (keep migrations; ignore local meta journal noise is fine to keep)
