@@ -49,14 +49,14 @@ export function Comments({
             onChange={(e) => setBody(e.target.value)}
             placeholder="Add a comment…"
             rows={3}
-            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/50 resize-none transition-all"
+            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#ff6b5c]/50 resize-none transition-all"
           />
           {error && <p className="text-[13px] text-rose-400 mt-2">{error}</p>}
           <div className="flex justify-end mt-2">
             <button
               type="submit"
               disabled={pending || !body.trim()}
-              className="px-4 py-2 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 rounded-xl bg-[#ff6b5c] text-white text-[14px] font-medium hover:bg-[#e8513f] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {pending ? "Posting…" : "Comment"}
             </button>
@@ -64,7 +64,7 @@ export function Comments({
         </form>
       ) : (
         <p className="mb-8 text-[14px] text-[#858585]">
-          <Link href="/signin" className="text-[#606c38] hover:underline">Sign in</Link> to join the conversation.
+          <Link href="/signin" className="text-[#ff6b5c] hover:underline">Sign in</Link> to join the conversation.
         </p>
       )}
 
@@ -77,7 +77,7 @@ export function Comments({
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={c.author.avatarUrl} alt={c.author.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
               ) : (
-                <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-xs font-semibold shrink-0">
+                <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#ff6b5c] to-[#c9443a] flex items-center justify-center text-white text-xs font-semibold shrink-0">
                   {initials}
                 </span>
               )}

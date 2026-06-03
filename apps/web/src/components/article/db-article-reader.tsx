@@ -110,7 +110,7 @@ export function DbArticleReader({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={author.avatarUrl} alt={author.name} className="w-10 h-10 rounded-full object-cover" />
                 ) : (
-                  <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-sm font-semibold">
+                  <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff6b5c] to-[#c9443a] flex items-center justify-center text-white text-sm font-semibold">
                     {initials}
                   </span>
                 )}

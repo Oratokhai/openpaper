@@ -86,6 +86,23 @@ Openpaper is live on Vercel: **openpaper-five.vercel.app** (GitHub: `Oratokhai/o
   - **Reader**: byline + Subscribe/Follow stack on mobile (`flex-col sm:flex-row`) — fixed a collision bug.
   - **Root**: added `viewport` export (`width=device-width`, `themeColor #0a0a0a`).
 
+### Coral rebrand + Writer Studio (2026-06-03)
+- [x] **Palette swap olive/forest green → signal coral `#ff6b5c`** across tokens + ~44 files (perl find-exec; cover/avatar/banner gradients + cream-foreground special-cased to keep dark anchors & legibility). Dark theme unchanged.
+- [x] **Floating editor command bar** — desktop bottom-center pill (Preview · Settings · Publish · More); mobile keeps the top cluster.
+- [x] **`/studio` writer workspace** — greeting + type pills + Recent Drafts + Published (`listMyPublished` added); sidebar `LayoutGrid` + account-menu entry; protected route.
+- ⬜ Cleanup: `article-card.tsx` stray retired tokens (`#818cf8` indigo, `#e8d5b0` gold). ⬜ Re-save the one existing published post so its stored olive cover gradient → coral (Tailwind only generates in-source classes).
+
+### Documentation page (2026-06-03)
+- [x] Public **`/docs`** — practical how-to + reference: what Openpaper is, who it's for, getting started, the 3 publication types, AI-native blocks, the editor/Studio, follow vs subscribe, discovery, FAQ.
+- [x] Sticky scroll-spy TOC (`components/docs/docs-toc.tsx`); dark/coral, Fraunces. Docs link re-added to landing nav + footer + mobile menu (fills the deferred nav link).
+
+### Dynamic Island navigation (2026-06-03)
+- [x] **Desktop rail → floating morphing pill** with `motion` (Framer Motion). Mobile bottom bar unchanged.
+- [x] **L1** expand-on-hover (icons → labels, spring `layout` morph).
+- [x] **L3** contextual morph: `useIsland()` channel + `IslandProvider` in `(app)` layout; collapsed face = writing (live word count + saved dot) on `/write`, reading (progress ring) on reader pages.
+- [x] **L2** live-activity peek (`pushActivity`) — "Draft saved ✓"/"Published ✓" on save.
+- ⬜ Real-time notification peeks (needs realtime/polling — notifications aren't live yet). ⬜ Reduced-motion fallback pass.
+
 ## Phase 2 — Backend
 **Goal:** Make it real — auth, database, actual publishing/following.
 
@@ -125,6 +142,34 @@ Openpaper is live on Vercel: **openpaper-five.vercel.app** (GitHub: `Oratokhai/o
 - [ ] Reshares
 - [ ] Reactions
 - [ ] Activity feed (real-time)
+
+---
+
+## 🌱 Soft Launch — first ~20 users (planned 2026-06-03)
+**Goal:** ~20 real users + structured feedback. Writer-first, personal outreach, current setup. Full playbook + outreach template: [[Soft Launch]].
+
+### A — Minimum pre-launch tweaks (not a hardening project)
+- [ ] Verify a Resend domain (+ set `EMAIL_FROM`) — **only hard requirement** (else Subscribe silently fails); fallback: label Subscribe "coming soon"
+- [ ] Set `NEXT_PUBLIC_APP_URL` to the real promotion URL
+- [x] Accept knowingly: no Blob store (images may not persist), dev Clerk (fine at this scale)
+
+### B — Seed content (before inviting anyone)
+- [ ] Publish 3–5 strong posts across all 3 types (Article / Tutorial / Benchmark), using AI-native blocks
+- [ ] Confirm Explore / Home / a model page render real content (no empty states) for a logged-out stranger
+
+### C — Soft launch (the ~20)
+- [ ] List 20–30 AI builders/writers from network (bias to those who'll publish)
+- [ ] ~5–8 seed writers (ask: publish one post) + ~15 first readers (ask: read/follow/comment/feedback)
+- [ ] Send short personal messages (staggered over a few days)
+
+### D — Feedback
+- [ ] One channel (form or DM thread), 4–5 questions
+- [ ] Log findings in vault as they arrive
+
+### E — Trigger for hard launch
+- [ ] ≥3 unprompted publishes · no critical loop breakage · signs of return visits
+- [ ] Then production hardening: custom domain · prod Clerk + own OAuth apps · Vercel Blob · Resend verified at volume
+- [ ] Then public: X/LinkedIn · Show HN · subreddits · Product Hunt (wedge = AI-native blocks)
 
 ---
 

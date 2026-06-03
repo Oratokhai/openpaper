@@ -23,8 +23,8 @@ const C = {
   text: "#dcd9d2",
   heading: "#f5f3ee",
   muted: "#8a8a8a",
-  accent: "#606c38",
-  accentSoft: "#a3b18a",
+  accent: "#ff6b5c",
+  accentSoft: "#ff9a8f",
 };
 
 type PMMark = { type: string; attrs?: Record<string, unknown> };
@@ -167,7 +167,7 @@ function renderNode(node: PMNode, key: string, ctx: { footnotes: string[] }): Re
 }
 
 function coverStyle(cover: string): React.CSSProperties {
-  const hexes = cover.match(/#[0-9a-fA-F]{6}/g) ?? ["#606c38", "#283618"];
+  const hexes = cover.match(/#[0-9a-fA-F]{6}/g) ?? ["#ff6b5c", "#e8513f"];
   return {
     height: 10,
     borderRadius: 6,

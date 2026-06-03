@@ -12,7 +12,7 @@ export function FeedHeader() {
         {!isLoaded ? null : isSignedIn ? (
           <Link
             href="/write"
-            className="text-[15px] bg-[#606c38] text-white px-5 py-2.5 rounded-xl font-medium hover:bg-[#283618] transition-colors"
+            className="text-[15px] bg-[#ff6b5c] text-white px-5 py-2.5 rounded-xl font-medium hover:bg-[#e8513f] transition-colors"
           >
             Start writing
           </Link>
@@ -26,7 +26,7 @@ export function FeedHeader() {
             </Link>
             <Link
               href="/signup"
-              className="text-[15px] bg-[#606c38] text-white px-5 py-2.5 rounded-xl font-medium hover:bg-[#283618] transition-colors"
+              className="text-[15px] bg-[#ff6b5c] text-white px-5 py-2.5 rounded-xl font-medium hover:bg-[#e8513f] transition-colors"
             >
               Start writing
             </Link>

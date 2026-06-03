@@ -98,8 +98,8 @@ export function EngagementDock({
         <MessageCircle className="w-[18px] h-[18px]" strokeWidth={2} />
       </DockButton>
 
-      <DockButton orientation={orientation} onClick={onSave} active={saved} activeClass="text-[#606c38]" ariaLabel={saved ? "Remove bookmark" : "Save"} pressed={saved}>
-        <Bookmark className={cn("w-[18px] h-[18px]", saved && "fill-[#606c38]")} strokeWidth={2} />
+      <DockButton orientation={orientation} onClick={onSave} active={saved} activeClass="text-[#ff6b5c]" ariaLabel={saved ? "Remove bookmark" : "Save"} pressed={saved}>
+        <Bookmark className={cn("w-[18px] h-[18px]", saved && "fill-[#ff6b5c]")} strokeWidth={2} />
       </DockButton>
 
       <DockButton orientation={orientation} onClick={onShare} active={shared} activeClass="text-emerald-400" label={horizontal && shared ? "Copied" : undefined} ariaLabel="Share">

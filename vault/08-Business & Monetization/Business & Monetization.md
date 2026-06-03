@@ -39,11 +39,24 @@
 
 ## Go-to-Market
 
-*To be defined — questions:*
-- Launch strategy: invite-only, public, waitlist?
-- Initial content: seed content from team or open submissions?
-- Community partnerships: Twitter/X AI community, Discord servers?
-- Influencer / thought-leader seeding?
+**Decided 2026-06-03** — see [[Soft Launch]] for the full playbook + outreach template.
+
+**Strategy: writer-first soft launch, then public hard launch.**
+
+- **Phase 1 — Soft launch (~20 users, feedback-focused).** Hand-picked personal outreach
+  (DM/email, not public posting) to a small but engaged AI/dev network. Two tiers:
+  ~5–8 **seed writers** (asked to publish one post — the flywheel) + ~15 **first readers**.
+  Seed 3–5 strong posts ourselves first so the platform isn't empty. Promote on current
+  dev setup (`openpaper-five.vercel.app`); only hard requirement is a verified Resend
+  domain so Subscribe doesn't silently fail.
+- **Trigger to go public:** ≥3 unprompted publishes + no critical loop breakage + signs of
+  return visits.
+- **Phase 2 — Hard launch (later).** After production hardening (custom domain, prod Clerk,
+  Vercel Blob, verified email at volume): X/LinkedIn (self + seed writers amplify), Show HN,
+  relevant subreddits (r/LocalLLaMA, r/artificial), Product Hunt. **Wedge = AI-native blocks**
+  (Prompt / Model Output / Model Mention) — the differentiator no other publishing tool has.
+
+*Open later:* community partnerships (AI Discords), thought-leader seeding — revisit at hard launch.
 
 ---
 

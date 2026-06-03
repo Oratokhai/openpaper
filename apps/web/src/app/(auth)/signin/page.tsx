@@ -101,7 +101,7 @@ export default function SignInPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
             required
-            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all"
+            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#ff6b5c]/60 focus:bg-white/[0.06] transition-all"
           />
         </div>
         <div>
@@ -115,7 +115,7 @@ export default function SignInPage() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
             required
-            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/60 focus:bg-white/[0.06] transition-all"
+            className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#ff6b5c]/60 focus:bg-white/[0.06] transition-all"
           />
         </div>
 
@@ -126,7 +126,7 @@ export default function SignInPage() {
         <button
           type="submit"
           disabled={!isLoaded || loading}
-          className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 rounded-xl bg-[#ff6b5c] text-white text-[14px] font-medium hover:bg-[#e8513f] transition-colors mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Signing in…" : "Sign in"}
         </button>

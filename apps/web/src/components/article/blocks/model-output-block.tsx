@@ -22,7 +22,7 @@ export function ModelOutputBlock({
   return (
     <div className="not-prose my-7 rounded-xl bg-[#0a0a0a] border border-white/[0.08] overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]">
-        <span className="text-[10px] text-[#606c38] font-medium uppercase tracking-widest">
+        <span className="text-[10px] text-[#ff6b5c] font-medium uppercase tracking-widest">
           Model Output
         </span>
         <div className="flex items-center gap-2">
@@ -49,7 +49,7 @@ export function ModelOutputBlock({
           {collapsible && (
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="text-[11px] text-[#606c38] font-medium hover:text-[#818cf8] transition-colors"
+              className="text-[11px] text-[#ff6b5c] font-medium hover:text-[#818cf8] transition-colors"
             >
               {expanded ? "Show less ↑" : "Show full response ↓"}
             </button>

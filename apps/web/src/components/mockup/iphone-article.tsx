@@ -85,7 +85,7 @@ export function IphoneArticle({ article }: IphoneArticleProps) {
       {/* Subtle glow behind phone */}
       <div
         className="absolute inset-0 rounded-[56px] blur-3xl opacity-20"
-        style={{ background: "radial-gradient(ellipse at center, #606c38 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse at center, #ff6b5c 0%, transparent 70%)" }}
       />
 
       {/* iPhone frame */}
@@ -170,7 +170,7 @@ export function IphoneArticle({ article }: IphoneArticleProps) {
             <div className="bg-[#0f0f0f] px-5 pt-5 pb-20">
               {/* Meta */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[10px] text-[#606c38] bg-[#606c38]/10 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] text-[#ff6b5c] bg-[#ff6b5c]/10 px-2 py-0.5 rounded-full">
                   {article.tag}
                 </span>
               </div>
@@ -185,7 +185,7 @@ export function IphoneArticle({ article }: IphoneArticleProps) {
 
               {/* Author */}
               <div className="flex items-center gap-2 mb-5 pb-4 border-b border-white/[0.06]">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white text-[9px] font-bold">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#ff6b5c] to-[#c9443a] flex items-center justify-center text-white text-[9px] font-bold">
                   DO
                 </div>
                 <span className="text-[11px] text-[#aaa]">{article.author}</span>

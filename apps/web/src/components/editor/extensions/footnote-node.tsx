@@ -54,7 +54,7 @@ function FootnoteView({ node, editor, getPos, updateAttributes }: NodeViewProps)
         type="button"
         onClick={handleClick}
         title={node.attrs.text as string}
-        className="text-[#606c38] text-[0.7em] font-semibold align-super hover:underline"
+        className="text-[#ff6b5c] text-[0.7em] font-semibold align-super hover:underline"
       >
         [{index || "?"}]
       </button>

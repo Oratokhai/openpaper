@@ -52,6 +52,14 @@ export function LandingMobileMenu() {
             Models
           </Link>
           <Link
+            href="/docs"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="block rounded-lg px-3 py-2.5 text-sm text-[#cfcfcf] hover:text-[#f5f3ee] hover:bg-white/[0.05] transition-colors"
+          >
+            Docs
+          </Link>
+          <Link
             href="/signin"
             role="menuitem"
             onClick={() => setOpen(false)}

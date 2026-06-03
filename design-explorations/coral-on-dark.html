@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coral on dark — accent candidates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Lora:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#f5f3ee; --card:#121212;
+    --border:rgba(255,255,255,0.07); --muted:#8d8d8d;
+    --font-display:"Fraunces",serif; --font-ui:"Geist",sans-serif; --font-mono:"Geist Mono",monospace; --font-prose:"Lora",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--font-ui);padding:48px 40px 80px;-webkit-font-smoothing:antialiased}
+  .head{max-width:1100px;margin:0 auto 40px}
+  .head h1{font-family:var(--font-display);font-size:40px;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px;font-variation-settings:"opsz" 60,"SOFT" 30}
+  .head p{color:var(--muted);font-size:15px;max-width:620px;line-height:1.5}
+  .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{border:1px solid var(--border);border-radius:20px;background:var(--card);padding:26px;display:flex;flex-direction:column;gap:20px}
+  .card .name{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+  .swatch{height:64px;border-radius:12px}
+  .hexrow{display:flex;gap:6px;flex-wrap:wrap}
+  .hexrow span{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);border:1px solid var(--border);padding:3px 7px;border-radius:6px}
+  .btn{padding:11px 22px;border-radius:12px;border:none;color:#fff;font-family:var(--font-ui);font-weight:600;font-size:14px;cursor:pointer;align-self:flex-start}
+  .demo{font-family:var(--font-prose);font-size:16px;line-height:1.6;color:#cfccc4}
+  .demo a{text-decoration:none;font-weight:500}
+  .label{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .cover{height:54px;border-radius:12px;display:flex;align-items:flex-end;padding:10px 12px;font-family:var(--font-display);color:#fff;font-size:15px;font-weight:600}
+  .avatarrow{display:flex;gap:10px;align-items:center}
+  .avatar{width:40px;height:40px;border-radius:50%}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:500}
+
+  /* A — Reference coral (warm, muted) */
+  .A{--c:#e85c54;--cd:#cf4840;--ct:rgba(232,92,84,0.14);--clight:#f2918b}
+  /* B — Signal coral (brighter, pops on black) */
+  .B{--c:#ff6b5c;--cd:#e8513f;--ct:rgba(255,107,92,0.14);--clight:#ff9a8f}
+  /* C — Rose coral (pinker, softer) */
+  .C{--c:#f2615f;--cd:#d84a55;--ct:rgba(242,97,95,0.14);--clight:#f794a0}
+
+  .A .swatch{background:#e85c54}.B .swatch{background:#ff6b5c}.C .swatch{background:#f2615f}
+  .card .btn{background:var(--c)}
+  .card .demo a{color:var(--c)}
+  .card .label{color:var(--c)}
+  .card .cover{background:linear-gradient(135deg,#5a1f1a,#a83a30,var(--c))}
+  .card .avatar{background:linear-gradient(140deg,var(--c),var(--cd))}
+  .card .chip{background:var(--ct);color:var(--clight)}
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>Pick the coral</h1>
+    <p>Same accent, three temperatures — shown on your real dark surface (<code style="font-family:var(--font-mono);font-size:13px">#0a0a0a</code>) in every place olive currently lives: a primary button, an inline link, an AI-block label, a cover gradient, an avatar, and a tint chip. Look at how the <b>small text</b> reads, not just the buttons.</p>
+  </div>
+  <div class="grid">
+    <!-- A -->
+    <div class="card A">
+      <div class="name">A · Reference coral <span style="color:#e85c54">●</span></div>
+      <div class="swatch"></div>
+      <div class="hexrow"><span>fill #e85c54</span><span>hover #cf4840</span><span>text #f2918b</span></div>
+      <button class="btn">Publish</button>
+      <div class="demo">Some years ago I thought <a href="#">I would sail about a little</a> and see the watery part of the world.</div>
+      <div class="label">Prompt · grader</div>
+      <div class="cover">Claude Opus 4.8</div>
+      <div class="avatarrow"><div class="avatar"></div><span class="chip">@claude-opus-4-8</span></div>
+    </div>
+    <!-- B -->
+    <div class="card B">
+      <div class="name">B · Signal coral <span style="color:#ff6b5c">●</span></div>
+      <div class="swatch"></div>
+      <div class="hexrow"><span>fill #ff6b5c</span><span>hover #e8513f</span><span>text #ff9a8f</span></div>
+      <button class="btn">Publish</button>
+      <div class="demo">Some years ago I thought <a href="#">I would sail about a little</a> and see the watery part of the world.</div>
+      <div class="label">Prompt · grader</div>
+      <div class="cover">Claude Opus 4.8</div>
+      <div class="avatarrow"><div class="avatar"></div><span class="chip">@claude-opus-4-8</span></div>
+    </div>
+    <!-- C -->
+    <div class="card C">
+      <div class="name">C · Rose coral <span style="color:#f2615f">●</span></div>
+      <div class="swatch"></div>
+      <div class="hexrow"><span>fill #f2615f</span><span>hover #d84a55</span><span>text #f794a0</span></div>
+      <button class="btn">Publish</button>
+      <div class="demo">Some years ago I thought <a href="#">I would sail about a little</a> and see the watery part of the world.</div>
+      <div class="label">Prompt · grader</div>
+      <div class="cover">Claude Opus 4.8</div>
+      <div class="avatarrow"><div class="avatar"></div><span class="chip">@claude-opus-4-8</span></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -52,7 +52,7 @@ export function TableOfContents({ sections }: { sections: TocSection[] }) {
                 className={cn(
                   "block border-l-2 pl-3 text-[13px] leading-snug transition-colors",
                   isActive
-                    ? "border-[#606c38] text-[#f5f3ee]"
+                    ? "border-[#ff6b5c] text-[#f5f3ee]"
                     : "border-transparent text-[#8d8d8d] hover:text-[#aaa]"
                 )}
               >

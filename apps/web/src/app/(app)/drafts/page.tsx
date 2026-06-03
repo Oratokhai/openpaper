@@ -17,7 +17,7 @@ export default async function DraftsPage() {
         </div>
         <Link
           href="/write"
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#ff6b5c] text-white text-sm font-medium hover:bg-[#e8513f] transition-colors"
         >
           <PenLine className="w-3.5 h-3.5" />
           New article

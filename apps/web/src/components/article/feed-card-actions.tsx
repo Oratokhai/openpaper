@@ -82,9 +82,9 @@ export function FeedCardActions({
         onClick={onSave}
         aria-label={saved ? "Remove bookmark" : "Save"}
         aria-pressed={saved}
-        className={cn("transition-colors", saved ? "text-[#606c38]" : "hover:text-[#f5f3ee]")}
+        className={cn("transition-colors", saved ? "text-[#ff6b5c]" : "hover:text-[#f5f3ee]")}
       >
-        <Bookmark className={cn("w-5 h-5", saved && "fill-[#606c38]")} />
+        <Bookmark className={cn("w-5 h-5", saved && "fill-[#ff6b5c]")} />
       </button>
     </div>
   );

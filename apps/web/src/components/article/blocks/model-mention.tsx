@@ -12,7 +12,7 @@ export function ModelMention({ slug }: { slug: string }) {
   const label = model ? model.name : slug;
 
   const chip = (
-    <span className="text-[#a3b18a] bg-[#a3b18a]/10 px-1.5 py-0.5 rounded text-[0.95em] font-medium whitespace-nowrap">
+    <span className="text-[#ff9a8f] bg-[#ff9a8f]/10 px-1.5 py-0.5 rounded text-[0.95em] font-medium whitespace-nowrap">
       @{label}
     </span>
   );

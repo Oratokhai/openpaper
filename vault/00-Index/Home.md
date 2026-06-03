@@ -18,6 +18,7 @@
 | [[API & Integrations]] | External services, AI integrations |
 | [[Business & Monetization]] | Revenue model, pricing, partnerships |
 | [[Roadmap]] | Phases, milestones, priorities |
+| [[Soft Launch]] | Go-to-market playbook + outreach templates |
 | [[Research & Inspiration]] | References, competitive analysis, inspiration |
 
 ---
@@ -52,6 +53,11 @@
 | Publication types | **Article (default, incl. opinions), Tutorial, Benchmark** — "Opinion" considered then dropped | 2026-06-02 |
 | Subscribe vs Follow | Subscribe = email newsletter (`subscriptions`); Follow = in-app feed/notifications (`follows`) — distinct | 2026-06-02 |
 | Docs nav link | Deferred to launch prep — removed from nav for now (no dead link) | 2026-06-02 |
+| Documentation | Shipped a dedicated public **`/docs`** page (how-to + reference, sticky scroll-spy TOC, dark/coral); re-added the Docs link to landing nav + footer + mobile menu | 2026-06-03 |
+| GTM / launch strategy | **Writer-first soft launch** to ~20 hand-picked people via personal network (seed content first), then public hard launch once flywheel turns — see [[Soft Launch]] | 2026-06-03 |
+| Brand accent | **Signal coral `#ff6b5c`** (hover `#e8513f`, light `#ff9a8f`) — swapped wholesale from olive/forest green. Dark theme kept; adapted only the accent from a coral+paper writing-app reference | 2026-06-03 |
+| Writer Studio | New `/studio` writer's-desk (greeting + drafts + published) + floating editor command bar — adapted from the same reference, kept dark — see [[Design & Style]] | 2026-06-03 |
+| Navigation = Dynamic Island | Desktop rail reimagined as a floating **morphing pill** (motion/Framer): hover-expand (L1) + contextual morph per route (L3, writing/reading faces) + live-activity peeks (L2). Added `motion` dep. Mobile bar unchanged — see [[Design & Style]] | 2026-06-03 |
 
 ---
 

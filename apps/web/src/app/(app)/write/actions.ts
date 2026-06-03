@@ -216,7 +216,7 @@ export async function getArticleForEdit(id: string): Promise<EditableArticle | n
     subtitle: a.subtitle ?? "",
     contentJson: a.content,
     tags: a.tags,
-    coverGradient: a.coverGradient ?? "from-[#283618] via-[#3a4d22] to-[#606c38]",
+    coverGradient: a.coverGradient ?? "from-[#4a1410] via-[#9e3329] to-[#d8503f]",
     coverImage: a.coverImage,
     freshness: a.freshness,
     type: a.type,
@@ -257,17 +257,85 @@ export async function deleteArticle(id: string): Promise<{ ok: boolean; error?: 
 
 /* ── List the current user's drafts ────────────────────────────────────────── */
 
-export type DraftSummary = { id: string; title: string; updatedAt: string };
+export type DraftSummary = {
+  id: string;
+  title: string;
+  updatedAt: string;
+  type: PublicationType;
+  coverGradient: string | null;
+  coverImage: string | null;
+};
 
 export async function listMyDrafts(): Promise<DraftSummary[]> {
   const { userId } = await auth();
   if (!userId) return [];
 
   const rows = await db
-    .select({ id: articles.id, title: articles.title, updatedAt: articles.updatedAt })
+    .select({
+      id: articles.id,
+      title: articles.title,
+      updatedAt: articles.updatedAt,
+      type: articles.type,
+      coverGradient: articles.coverGradient,
+      coverImage: articles.coverImage,
+    })
     .from(articles)
     .where(and(eq(articles.authorId, userId), eq(articles.status, "draft")))
     .orderBy(desc(articles.updatedAt));
 
-  return rows.map((r) => ({ id: r.id, title: r.title, updatedAt: r.updatedAt.toISOString() }));
+  return rows.map((r) => ({
+    id: r.id,
+    title: r.title,
+    updatedAt: r.updatedAt.toISOString(),
+    type: r.type,
+    coverGradient: r.coverGradient,
+    coverImage: r.coverImage,
+  }));
+}
+
+/* ── List the current user's published articles (for the Studio) ───────────── */
+
+export type PublishedSummary = {
+  id: string;
+  title: string;
+  slug: string;
+  type: PublicationType;
+  coverGradient: string | null;
+  coverImage: string | null;
+  readingTime: string | null;
+  likeCount: number;
+  publishedAt: string | null;
+};
+
+export async function listMyPublished(): Promise<PublishedSummary[]> {
+  const { userId } = await auth();
+  if (!userId) return [];
+
+  const rows = await db
+    .select({
+      id: articles.id,
+      title: articles.title,
+      slug: articles.slug,
+      type: articles.type,
+      coverGradient: articles.coverGradient,
+      coverImage: articles.coverImage,
+      readingTime: articles.readingTime,
+      likeCount: articles.likeCount,
+      publishedAt: articles.publishedAt,
+    })
+    .from(articles)
+    .where(and(eq(articles.authorId, userId), eq(articles.status, "published")))
+    .orderBy(desc(articles.publishedAt));
+
+  return rows.map((r) => ({
+    id: r.id,
+    title: r.title,
+    slug: r.slug,
+    type: r.type,
+    coverGradient: r.coverGradient,
+    coverImage: r.coverImage,
+    readingTime: r.readingTime,
+    likeCount: r.likeCount,
+    publishedAt: r.publishedAt ? r.publishedAt.toISOString() : null,
+  }));
 }

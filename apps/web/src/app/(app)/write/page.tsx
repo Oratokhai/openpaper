@@ -6,10 +6,12 @@ import { mockTags } from "@/lib/mock-data";
 import {
   Eye, Pencil, Settings, Send, ChevronDown, X,
   Mail, Zap, Clock, AlertTriangle, CheckCircle, Copy, ExternalLink, ImagePlus,
+  MoreHorizontal, LayoutGrid,
 } from "lucide-react";
 import { uploadImage } from "@/lib/upload-client";
 import { AutoTextarea } from "@/components/editor/auto-textarea";
 import { RichEditor } from "@/components/editor/rich-editor";
+import { useIsland } from "@/components/layout/island-context";
 import { publishArticle, getArticleForEdit, type PublicationType } from "./actions";
 import { FileText, GraduationCap, BarChart3 } from "lucide-react";
 
@@ -20,12 +22,12 @@ const TYPE_OPTIONS: { value: PublicationType; label: string; description: string
 ];
 
 const COVER_OPTIONS = [
-  { id: "a", gradient: "from-[#283618] via-[#3a4d22] to-[#606c38]" },
-  { id: "b", gradient: "from-[#1a2410] to-[#283618]" },
-  { id: "c", gradient: "from-[#606c38] to-[#283618]" },
-  { id: "d", gradient: "from-[#bc6c25] to-[#283618]" },
-  { id: "e", gradient: "from-[#283618] to-[#0a0a0a]" },
-  { id: "f", gradient: "from-[#3a4d22] via-[#606c38] to-[#283618]" },
+  { id: "a", gradient: "from-[#4a1410] via-[#9e3329] to-[#d8503f]" },
+  { id: "b", gradient: "from-[#2a0c0a] to-[#d8503f]" },
+  { id: "c", gradient: "from-[#ff6b5c] to-[#7a2620]" },
+  { id: "d", gradient: "from-[#bc6c25] to-[#7a2620]" },
+  { id: "e", gradient: "from-[#d8503f] to-[#0a0a0a]" },
+  { id: "f", gradient: "from-[#9e3329] via-[#ff6b5c] to-[#7a2620]" },
 ];
 
 type Freshness = "current" | "aging" | "outdated" | "none";
@@ -58,10 +60,14 @@ export default function WritePage() {
   const [emailDelivery, setEmailDelivery] = useState(true);
   const [published, setPublished] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   // Editor instance (for extracting content on publish) + save state
   const editorRef = useRef<Editor | null>(null);
   const [editorReady, setEditorReady] = useState(false);
+  const [words, setWords] = useState(0);
+  const [dirty, setDirty] = useState(false);
+  const { setIsland, pushActivity } = useIsland();
   const [publishing, setPublishing] = useState(false);
   const [pubError, setPubError] = useState("");
   const [draftSaved, setDraftSaved] = useState(false);
@@ -102,6 +108,33 @@ export default function WritePage() {
       pendingContent.current = null;
     }
   }, [editorReady]);
+
+  // Live word count + dirty tracking (debounced) — feeds the contextual island.
+  useEffect(() => {
+    const ed = editorRef.current;
+    if (!editorReady || !ed) return;
+    let t: ReturnType<typeof setTimeout>;
+    const recount = () => {
+      const text = ed.getText().trim();
+      setWords(text ? text.split(/\s+/).length : 0);
+    };
+    const onUpdate = () => {
+      setDirty(true);
+      clearTimeout(t);
+      t = setTimeout(recount, 300);
+    };
+    recount();
+    ed.on("update", onUpdate);
+    return () => { ed.off("update", onUpdate); clearTimeout(t); };
+  }, [editorReady]);
+
+  // Drive the island's "writing" face; clear it in preview and on leave.
+  useEffect(() => {
+    if (preview) { setIsland(null); return; }
+    setIsland({ mode: "writing", words, saved: !dirty && (!!articleId || draftSaved), isNew: !articleId });
+  }, [words, dirty, articleId, draftSaved, preview, setIsland]);
+
+  useEffect(() => () => setIsland(null), [setIsland]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -184,6 +217,12 @@ export default function WritePage() {
 
     // Remember the new id so subsequent saves update instead of duplicating.
     setArticleId(res.id);
+    setDirty(false);
+    pushActivity({
+      icon: "check",
+      tone: "ok",
+      label: res.status === "published" ? "Published ✓" : "Draft saved",
+    });
 
     if (res.status === "published") {
       setResult({ username: res.username, slug: res.slug });
@@ -219,7 +258,8 @@ export default function WritePage() {
             <span>{loadingExisting ? "Loading…" : draftSaved ? "Draft saved" : articleId ? "Saved" : "Not saved"}</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Mobile action cluster — desktop uses the floating command bar below */}
+          <div className="flex md:hidden items-center gap-2">
             <a
               href="/drafts"
               className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-[#888] hover:text-[#f5f3ee] hover:bg-white/[0.04] transition-all"
@@ -242,7 +282,7 @@ export default function WritePage() {
             </button>
             <button
               onClick={() => setPanelOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#ff6b5c] text-white text-sm font-medium hover:bg-[#e8513f] transition-colors"
             >
               <Send className="w-3.5 h-3.5" />
               Publish
@@ -328,6 +368,82 @@ export default function WritePage() {
         </div>
       </div>
 
+      {/* ── Floating command bar (desktop) ──────────────────── */}
+      {!published && !preview && (
+        <div className="hidden md:flex fixed bottom-7 left-[calc(50%+38px)] -translate-x-1/2 z-40 items-center gap-1 rounded-full bg-[#161616] border border-white/[0.08] p-1.5 shadow-2xl shadow-black/50">
+          <button
+            onClick={() => setPreview(true)}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full text-sm text-[#cfccc4] hover:bg-white/[0.06] transition-colors"
+          >
+            <Eye className="w-[18px] h-[18px]" />
+            Preview
+          </button>
+          <button
+            onClick={() => setPanelOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full text-sm text-[#cfccc4] hover:bg-white/[0.06] transition-colors"
+          >
+            <Settings className="w-[18px] h-[18px]" />
+            Settings
+          </button>
+
+          <span className="mx-1.5 h-6 w-px bg-white/[0.12]" />
+
+          <button
+            onClick={() => setPanelOpen(true)}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ff6b5c] text-white text-sm font-semibold hover:bg-[#e8513f] transition-colors"
+          >
+            <Send className="w-[15px] h-[15px]" />
+            Publish
+          </button>
+
+          <div className="relative">
+            <button
+              onClick={() => setMoreOpen((o) => !o)}
+              aria-label="More"
+              aria-haspopup="menu"
+              aria-expanded={moreOpen}
+              className="flex items-center justify-center w-10 h-10 rounded-full text-[#cfccc4] hover:bg-white/[0.06] transition-colors"
+            >
+              <MoreHorizontal className="w-[18px] h-[18px]" />
+            </button>
+            {moreOpen && (
+              <div
+                role="menu"
+                className="absolute bottom-full right-0 mb-2 w-44 rounded-xl border border-white/[0.1] bg-[#161616] p-1.5 shadow-2xl"
+              >
+                <a
+                  href="/studio"
+                  role="menuitem"
+                  className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm text-[#cfccc4] hover:text-[#f5f3ee] hover:bg-white/[0.05] transition-colors"
+                >
+                  <LayoutGrid className="w-4 h-4 text-[#888]" /> Open Studio
+                </a>
+                <a
+                  href="/drafts"
+                  role="menuitem"
+                  className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm text-[#cfccc4] hover:text-[#f5f3ee] hover:bg-white/[0.05] transition-colors"
+                >
+                  <Eye className="w-4 h-4 text-[#888]" /> All drafts
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      {/* Close the more-menu when clicking elsewhere */}
+      {moreOpen && <div className="fixed inset-0 z-30" onClick={() => setMoreOpen(false)} />}
+
+      {/* In preview mode, a single floating control to exit back to editing */}
+      {!published && preview && (
+        <button
+          onClick={() => setPreview(false)}
+          className="hidden md:flex fixed bottom-7 left-[calc(50%+38px)] -translate-x-1/2 z-40 items-center gap-2 px-6 py-3 rounded-full bg-[#161616] border border-white/[0.08] text-sm text-[#f5f3ee] shadow-2xl shadow-black/50 hover:bg-[#1c1c1c] transition-colors"
+        >
+          <Pencil className="w-[16px] h-[16px]" />
+          Back to editing
+        </button>
+      )}
+
       {/* ── Publish panel ───────────────────────────────────── */}
       {/* Backdrop */}
       {panelOpen && (
@@ -381,7 +497,7 @@ export default function WritePage() {
                       title={opt.description}
                       className={`flex flex-col items-center gap-1.5 px-2 py-3 rounded-xl border text-center transition-all ${
                         pubType === opt.value
-                          ? "border-[#606c38]/60 bg-[#606c38]/10 text-[#f5f3ee]"
+                          ? "border-[#ff6b5c]/60 bg-[#ff6b5c]/10 text-[#f5f3ee]"
                           : "border-white/[0.06] text-[#8d8d8d] hover:border-white/[0.12] hover:text-[#aaa]"
                       }`}
                     >
@@ -415,7 +531,7 @@ export default function WritePage() {
                         key={c.id}
                         onClick={() => setSelectedCover(c.id)}
                         className={`h-12 rounded-xl bg-gradient-to-br ${c.gradient} transition-all ring-2 ring-offset-2 ring-offset-[#111] ${
-                          selectedCover === c.id ? "ring-[#606c38]" : "ring-transparent"
+                          selectedCover === c.id ? "ring-[#ff6b5c]" : "ring-transparent"
                         }`}
                       />
                     ))}
@@ -442,7 +558,7 @@ export default function WritePage() {
                   onChange={(e) => setSubtitle(e.target.value)}
                   placeholder="A one-line hook for your article…"
                   rows={2}
-                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#606c38]/50 resize-none transition-all"
+                  className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#ff6b5c]/50 resize-none transition-all"
                 />
               </section>
 
@@ -500,7 +616,7 @@ export default function WritePage() {
                   <button
                     onClick={() => setEmailDelivery((e) => !e)}
                     className={`shrink-0 mt-0.5 w-11 h-6 rounded-full transition-colors relative ${
-                      emailDelivery ? "bg-[#606c38]" : "bg-white/[0.08]"
+                      emailDelivery ? "bg-[#ff6b5c]" : "bg-white/[0.08]"
                     }`}
                   >
                     <span
@@ -527,7 +643,7 @@ export default function WritePage() {
               <button
                 onClick={() => save("published")}
                 disabled={publishing}
-                className="w-full py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-xl bg-[#ff6b5c] text-white text-[14px] font-medium hover:bg-[#e8513f] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-3.5 h-3.5" />
                 {publishing ? "Publishing…" : "Publish now"}
@@ -574,7 +690,7 @@ function PublishedState({
           href={`/${username}/${slug}`}
           target="_blank"
           rel="noreferrer"
-          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#606c38] text-white text-[14px] font-medium hover:bg-[#283618] transition-colors"
+          className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#ff6b5c] text-white text-[14px] font-medium hover:bg-[#e8513f] transition-colors"
         >
           <ExternalLink className="w-3.5 h-3.5" />
           View article

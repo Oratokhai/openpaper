@@ -11,9 +11,9 @@
 **Principles:**
 - Large, breathing elements — hero text at `text-7xl/8xl`, section headings at `text-5xl`, generous `py-36` section spacing
 - Dark-first, warm not cold — `#0a0a0a` not pure black, `#f5f3ee` not pure white
-- Forest/olive green accent as the single brand color — used sparingly for CTAs, active states, AI block labels. `#606c38` (olive) as the workhorse accent (legible as both fill and text on dark), `#283618` (deep green) for hover/depth, `#a3b18a` (sage) for light accent text/highlights
-- Cream panels (`#fdf0d5`) for contrast sections (growth CTA)
-- **Retired 2026-06-02:** indigo/violet/pink accent (`#6366f1`/`#8b5cf6`/`#a78bfa`/`#ec4899`) and old cream `#efeae0` — swapped wholesale to the green/cream earthy palette per user direction
+- Signal coral accent as the single brand color — used sparingly for CTAs, active states, AI block labels. `#ff6b5c` (coral) as the workhorse accent (legible as both fill and text on dark), `#e8513f` (deep coral) for hover/depth, `#ff9a8f` (light coral) for light accent text/highlights
+- Cream panels (`#fdf0d5`) for contrast sections (growth CTA); cream text `--cream-foreground` `#4a1410` (deep coral-brown)
+- **Retired 2026-06-03:** the forest/olive green accent (`#606c38`/`#283618`/`#3a4d22`/`#a3b18a`) — swapped wholesale to **signal coral** `#ff6b5c` per user direction (they liked a coral+paper writing-app reference; we kept the dark theme and took only the accent). Earlier retired 2026-06-02: indigo/violet/pink (`#6366f1`/`#8b5cf6`/`#a78bfa`/`#ec4899`), old cream `#efeae0`.
 - Rounded generously — `rounded-2xl` cards, `rounded-3xl` panels, `rounded-xl` buttons
 
 ---
@@ -40,24 +40,25 @@
 | `--card` | `#121212` | Card surface |
 | `--border` | `rgba(255,255,255,0.07)` | Subtle borders |
 | `--muted-foreground` | `#888` | Secondary text |
-| `--brand` | `#606c38` | Olive green accent (fill + text on dark) |
-| `--brand-hover` | `#283618` | Deep green hover |
-| `--brand-muted` | `rgba(96,108,56,0.14)` | Subtle accent tint bg |
+| `--brand` | `#ff6b5c` | Signal coral accent (fill + text on dark) |
+| `--brand-hover` | `#e8513f` | Deep coral hover |
+| `--brand-muted` | `rgba(255,107,92,0.14)` | Subtle accent tint bg |
 | `--cream` | `#fdf0d5` | Warm cream panel |
-| `--cream-foreground` | `#283618` | Cream text (deep green) |
+| `--cream-foreground` | `#4a1410` | Cream text (deep coral-brown) |
 
-**Sage (light accent):** `#a3b18a` — variable highlights, light accent text, banner radial glow.
-**Default cover/banner gradient:** `from-[#283618] via-[#3a4d22] to-[#606c38]` (dark→olive; covers carry white overlay titles so cover gradients must stay dark, never end light). Earthy cover presets in `write/page.tsx` include a terracotta `#bc6c25` option from the same palette family.
+**Light coral (light accent):** `#ff9a8f` — variable highlights, light accent text, banner radial glow.
+**Default cover/banner gradient:** `from-[#4a1410] via-[#9e3329] to-[#d8503f]` (dark→coral; keep the dark anchor so white overlay titles stay legible, never end light). Cover presets in `write/page.tsx` keep a terracotta `#bc6c25` option (harmonizes with coral). Profile banner: `from-[#ff6b5c] via-[#e8513f] to-[#3a0f0b]`.
 
-**Gradient avatars:** `from-[#606c38] to-[#283618]` — all user avatars.
-**Old tokens to avoid:** `#f0ede8`, `#0c0c0c`, retired indigo/violet `#6366f1`/`#8b5cf6`/`#ec4899`/`#a78bfa`, old cream `#efeae0`.
+**Gradient avatars:** `from-[#ff6b5c] to-[#c9443a]` — all user avatars.
+**Old tokens to avoid:** `#f0ede8`, `#0c0c0c`, retired indigo/violet `#6366f1`/`#8b5cf6`/`#ec4899`/`#a78bfa`/`#818cf8`, old cream `#efeae0`, **retired olive `#606c38`/`#283618`/`#3a4d22`/`#a3b18a`**.
+**Tailwind gotcha:** arbitrary cover-gradient classes (`from-[#…]`) only generate CSS when present in source — DB articles that stored an old olive gradient string render with no gradient until re-saved.
 
 ---
 
 ## Component Patterns
 
 ### Buttons
-- Primary: `bg-[#606c38] text-white px-6 py-3 rounded-xl hover:bg-[#283618]`
+- Primary: `bg-[#ff6b5c] text-white px-6 py-3 rounded-xl hover:bg-[#e8513f]`
 - Secondary: `border border-white/[0.1] text-[#aaa] px-6 py-3 rounded-xl hover:border-white/[0.25]`
 - Cream: `bg-[#1a1a1a] text-white px-7 py-3.5 rounded-xl` (on cream panels)
 
@@ -67,8 +68,8 @@
 
 ### AI-Native Blocks
 All use: `rounded-xl bg-[#0a0a0a] border border-white/[0.08]`
-- Label: `text-[10px] text-[#606c38] uppercase tracking-widest`
-- Variable highlights: `text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded`
+- Label: `text-[10px] text-[#ff6b5c] uppercase tracking-widest`
+- Variable highlights: `text-[#ff9a8f] bg-[#ff9a8f]/10 px-1 rounded`
 
 ---
 
@@ -124,10 +125,28 @@ Mirrors Substack's toolbar pattern (decided after analysing their options):
 - More▾: Prompt Block · Model Output · Code block · LaTeX · Footnote
 - Preview: read-only render using same Tiptap instance
 
+**Floating command bar (added 2026-06-03):** desktop-only bottom-center dark pill holding the *global* actions — Preview · Settings · | · **Publish** (coral) · ⋯(More → Studio/Drafts). Adapted from a coral+paper writing-app reference the user liked. The inline formatting toolbar above is unchanged. On mobile (`< md`) the old top-right action cluster stays (`md:hidden`) to avoid colliding with the bottom tab bar + Write FAB. Positioned `left-[calc(50%+38px)]` to center over the content area (clears the 76px rail). File: `app/(app)/write/page.tsx`.
+
 **Substack options we deliberately excluded:** Financial chart, Prediction market, Poetry, Recipe — not our audience.
 **On roadmap:** Audio/Video embeds (Phase 2), Poll (social layer Phase 2).
 
 ---
+
+## Writer Studio — `/studio` (added 2026-06-03)
+
+Writer's-desk home, adapted from the reference (kept dark, not the cream original):
+- Greeting "Hey, {firstName}!" (name in coral) + Fraunces "What will you write today?" + coral "New article" CTA
+- Filter pills (All / Articles / Tutorials / Benchmarks) — client-side filter over loaded lists
+- **Recent Drafts** (thumbnail + title + edited-relative + type → `/write?edit=`) and **Published** (thumbnail + title + date + likes → `/{username}/{slug}`), each with "See all"
+- Files: `app/(app)/studio/page.tsx` (server: `currentUser` + `listMyDrafts`/`listMyPublished` + `getUsernameById`), `components/studio/studio-board.tsx` (client). Entry points: sidebar rail `LayoutGrid` icon + account menu. Protected in `proxy.ts`. `/drafts` still exists (drafts-only list).
+
+## Navigation — Dynamic Island rail (added 2026-06-03)
+
+Desktop left rail reimagined as a **floating, morphing pill** (à la iPhone Dynamic Island). Built with **`motion`** (Framer Motion). Mobile bottom bar unchanged. File: `components/layout/sidebar-rail.tsx` + `components/layout/island-context.tsx`.
+- **L1 expand-on-hover:** `<motion.aside layout>`; collapsed = icon column (~60px), hover springs to labelled nav (~244px). Labels are conditionally rendered (not opacity) so the pill truly collapses; spring `stiffness 400 / damping 32`.
+- **L3 contextual morph:** pages push context via `useIsland()`; collapsed face becomes **writing** (live word count + saved dot) on `/write`, or **reading** (progress ring) on a reader page. Hover always restores full nav.
+- **L2 live activities:** `pushActivity()` shows a transient peek (auto-clears ~2.4s) — e.g. "Draft saved ✓". Real-time notification peeks deferred (notifications aren't realtime).
+- **Gotchas:** center via an outer flex wrapper, never a `transform` on the animated pill (fights `layout`); the `(app)` layout wraps children in `<IslandProvider>` so rail + pages share state.
 
 ## Responsive / Mobile (pass shipped 2026-06-02)
 
@@ -150,4 +169,4 @@ Web-first, but the site is now phone-usable (verified at 390px, no horizontal ov
 ---
 
 *Tags: `#design` `#style` `#typography` `#tokens`*
-*Last updated: 2026-06-02 — palette swap: indigo/violet → forest/olive green (`#283618`/`#606c38`/`#a3b18a`) + cream `#fdf0d5`*
+*Last updated: 2026-06-03 — palette swap: olive/forest green → **signal coral** (`#ff6b5c`/`#e8513f`/`#ff9a8f`); added floating editor command bar + `/studio` writer workspace*

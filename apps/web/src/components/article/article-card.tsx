@@ -146,7 +146,7 @@ function AuthorAvatar({
   return (
     <div
       className={cn(
-        "rounded-full bg-gradient-to-br from-[#606c38] to-[#283618] flex items-center justify-center text-white font-semibold shrink-0",
+        "rounded-full bg-gradient-to-br from-[#ff6b5c] to-[#c9443a] flex items-center justify-center text-white font-semibold shrink-0",
         size === "sm" ? "w-6 h-6 text-[10px]" : "w-7 h-7 text-xs"
       )}
     >

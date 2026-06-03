@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Openpaper — logo explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#f5f3ee; --card:#121212; --border:rgba(255,255,255,0.07);
+    --muted:#8d8d8d; --coral:#ff6b5c; --coral-deep:#e8513f; --coral-light:#ff9a8f; --cream:#fdf0d5;
+    --display:"Fraunces",serif; --ui:"Geist",sans-serif; --mono:"Geist Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--ui);padding:56px 40px 96px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto}
+  .head h1{font-family:var(--display);font-size:42px;font-weight:600;letter-spacing:-0.02em;margin-bottom:10px;font-variation-settings:"opsz" 60,"SOFT" 30}
+  .head p{color:var(--muted);font-size:16px;max-width:640px;line-height:1.55;margin-bottom:8px}
+  .head .badge{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-light)}
+  h2.sec{font-family:var(--display);font-size:24px;font-weight:600;margin:54px 0 22px}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .card{border:1px solid var(--border);border-radius:22px;background:var(--card);padding:30px;display:flex;flex-direction:column;gap:22px}
+  .card .tag{display:flex;align-items:baseline;gap:10px}
+  .card .tag .k{font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:.1em}
+  .card .tag .name{font-size:17px;font-weight:600}
+  .card .desc{font-size:13.5px;color:var(--muted);line-height:1.55}
+  .row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .big{width:84px;height:84px}
+  .lockup{display:flex;align-items:center;gap:12px}
+  .lockup .wm{font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-0.02em}
+  .favs{display:flex;align-items:center;gap:12px}
+  .fav{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+  .fav.dark{background:#1c1c1c;border:1px solid var(--border)}
+  .fav.coral{background:linear-gradient(150deg,var(--coral),var(--coral-deep))}
+  .fav.cream{background:var(--cream)}
+  .fav.sm{width:26px;height:26px;border-radius:8px}
+  .meta{font-family:var(--mono);font-size:10px;color:#6e6e6e;letter-spacing:.08em;text-transform:uppercase}
+  .divider{height:1px;background:var(--border);margin:2px 0}
+
+  /* wordmark treatments */
+  .wmcard{border:1px solid var(--border);border-radius:18px;background:var(--card);padding:30px 34px;display:flex;flex-direction:column;gap:14px}
+  .wmrow{font-family:var(--display);font-weight:600;letter-spacing:-0.025em;font-size:38px;line-height:1}
+  .wmcaption{font-size:13px;color:var(--muted)}
+  .onlight{background:var(--cream);border-radius:14px;padding:18px 22px;display:inline-flex}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <p class="badge">Logo explorations · all real SVG, ownable</p>
+    <h1>A mark for Openpaper</h1>
+    <p>Five symbol directions + wordmark treatments — each keeps the editorial / paper spirit of the ❦ placeholder, but drawn as a vector you own (crisp at any size, consistent everywhere, trademarkable). Shown big, as a lockup, and at favicon size.</p>
+  </div>
+
+  <h2 class="sec">Symbol marks</h2>
+  <div class="grid">
+
+    <!-- A — The Fold -->
+    <div class="card">
+      <div class="tag"><span class="k">A</span><span class="name">The Fold</span></div>
+      <div class="row">
+        <svg class="big" viewBox="0 0 48 48" fill="none">
+          <path d="M11 8.5A2.5 2.5 0 0 1 13.5 6H29l8 8v25.5a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 11 39.5z" stroke="#f5f3ee" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M29 6v8h8" stroke="#f5f3ee" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M17 25h14M17 31h9" stroke="#ff6b5c" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+        <div class="lockup">
+          <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+            <path d="M11 8.5A2.5 2.5 0 0 1 13.5 6H29l8 8v25.5a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 11 39.5z" stroke="#f5f3ee" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M29 6v8h8" stroke="#f5f3ee" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M17 25h14M17 31h9" stroke="#ff6b5c" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="wm">Openpaper</span>
+        </div>
+        <div class="favs">
+          <div class="fav dark"><svg width="24" height="24" viewBox="0 0 48 48" fill="none"><path d="M11 8.5A2.5 2.5 0 0 1 13.5 6H29l8 8v25.5a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 11 39.5z" stroke="#f5f3ee" stroke-width="3.2" stroke-linejoin="round"/><path d="M29 6v8h8" stroke="#f5f3ee" stroke-width="3.2" stroke-linejoin="round"/><path d="M17 25h14M17 31h9" stroke="#ff6b5c" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+          <div class="fav dark sm"><svg width="16" height="16" viewBox="0 0 48 48" fill="none"><path d="M11 8.5A2.5 2.5 0 0 1 13.5 6H29l8 8v25.5a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 11 39.5z" stroke="#f5f3ee" stroke-width="3.6" stroke-linejoin="round"/><path d="M29 6v8h8" stroke="#f5f3ee" stroke-width="3.6" stroke-linejoin="round"/></svg></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="desc">A dog-eared page with two lines of writing. The most literal &ldquo;paper&rdquo; read — instantly legible, great at tiny sizes. Safe, friendly, unmistakably a publication.</p>
+    </div>
+
+    <!-- B — Fleuron Leaf -->
+    <div class="card">
+      <div class="tag"><span class="k">B</span><span class="name">Fleuron</span></div>
+      <div class="row">
+        <svg class="big" viewBox="0 0 48 48" fill="none">
+          <path d="M24 5C14.5 13 14.5 31 24 43C33.5 31 33.5 13 24 5Z" fill="#ff6b5c"/>
+          <path d="M24 12V37" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M24 20C21 18 18.5 17.5 16.5 18M24 20C27 18 29.5 17.5 31.5 18M24 28C21 26 18.5 25.5 16.5 26M24 28C27 26 29.5 25.5 31.5 26" stroke="#0a0a0a" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+        </svg>
+        <div class="lockup">
+          <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><path d="M24 5C14.5 13 14.5 31 24 43C33.5 31 33.5 13 24 5Z" fill="#ff6b5c"/><path d="M24 12V37" stroke="#0a0a0a" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <span class="wm">Openpaper</span>
+        </div>
+        <div class="favs">
+          <div class="fav dark"><svg width="24" height="24" viewBox="0 0 48 48" fill="none"><path d="M24 5C14.5 13 14.5 31 24 43C33.5 31 33.5 13 24 5Z" fill="#ff6b5c"/><path d="M24 12V37" stroke="#0a0a0a" stroke-width="2.8" stroke-linecap="round"/></svg></div>
+          <div class="fav cream sm"><svg width="16" height="16" viewBox="0 0 48 48" fill="none"><path d="M24 5C14.5 13 14.5 31 24 43C33.5 31 33.5 13 24 5Z" fill="#e8513f"/><path d="M24 12V37" stroke="#fdf0d5" stroke-width="3" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="desc">The ❦ reborn as a clean leaf with veins — directly honours the typographic-ornament origin. Most &ldquo;literary&rdquo; and distinctive of the set. Coral-forward, elegant.</p>
+    </div>
+
+    <!-- C — The Caret -->
+    <div class="card">
+      <div class="tag"><span class="k">C</span><span class="name">The Caret</span></div>
+      <div class="row">
+        <svg class="big" viewBox="0 0 48 48" fill="none">
+          <rect x="11" y="7" width="26" height="34" rx="4" stroke="#f5f3ee" stroke-width="2.6"/>
+          <path d="M18 17.5h6.5" stroke="#f5f3ee" stroke-width="2.2" stroke-linecap="round" opacity="0.45"/>
+          <path d="M24 14.5v19M21 14.5h6M21 33.5h6" stroke="#ff6b5c" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+        <div class="lockup">
+          <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><rect x="11" y="7" width="26" height="34" rx="4" stroke="#f5f3ee" stroke-width="3"/><path d="M24 14.5v19M21 14.5h6M21 33.5h6" stroke="#ff6b5c" stroke-width="3" stroke-linecap="round"/></svg>
+          <span class="wm">Openpaper</span>
+        </div>
+        <div class="favs">
+          <div class="fav dark"><svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="11" y="7" width="26" height="34" rx="4" stroke="#f5f3ee" stroke-width="3.2"/><path d="M24 14.5v19M21 14.5h6M21 33.5h6" stroke="#ff6b5c" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+          <div class="fav coral sm"><svg width="16" height="16" viewBox="0 0 48 48" fill="none"><path d="M24 12v24M20 12h8M20 36h8" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="desc">A page with a coral text-cursor (I-beam) inside. Says &ldquo;writing&rdquo; and quietly nods to the terminal/AI world. Modern, techy, a touch more &ldquo;tool&rdquo; than &ldquo;magazine.&rdquo;</p>
+    </div>
+
+    <!-- D — O monogram + leaf -->
+    <div class="card">
+      <div class="tag"><span class="k">D</span><span class="name">The O</span></div>
+      <div class="row">
+        <svg class="big" viewBox="0 0 48 48">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M24 5A19 19 0 1 0 24 43A19 19 0 0 0 24 5ZM24 15A9 9 0 1 1 24 33A9 9 0 0 1 24 15Z" fill="#f5f3ee"/>
+          <path d="M24 17.5C20.5 21 20.5 27 24 30.5C27.5 27 27.5 21 24 17.5Z" fill="#ff6b5c"/>
+        </svg>
+        <div class="lockup">
+          <svg width="30" height="30" viewBox="0 0 48 48"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 5A19 19 0 1 0 24 43A19 19 0 0 0 24 5ZM24 15A9 9 0 1 1 24 33A9 9 0 0 1 24 15Z" fill="#f5f3ee"/><path d="M24 17.5C20.5 21 20.5 27 24 30.5C27.5 27 27.5 21 24 17.5Z" fill="#ff6b5c"/></svg>
+          <span class="wm">penpaper</span>
+        </div>
+        <div class="favs">
+          <div class="fav dark"><svg width="25" height="25" viewBox="0 0 48 48"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 5A19 19 0 1 0 24 43A19 19 0 0 0 24 5ZM24 15A9 9 0 1 1 24 33A9 9 0 0 1 24 15Z" fill="#f5f3ee"/><path d="M24 17.5C20.5 21 20.5 27 24 30.5C27.5 27 27.5 21 24 17.5Z" fill="#ff6b5c"/></svg></div>
+          <div class="fav dark sm"><svg width="17" height="17" viewBox="0 0 48 48"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 5A19 19 0 1 0 24 43A19 19 0 0 0 24 5ZM24 15A9 9 0 1 1 24 33A9 9 0 0 1 24 15Z" fill="#f5f3ee"/><path d="M24 17.5C20.5 21 20.5 27 24 30.5C27.5 27 27.5 21 24 17.5Z" fill="#ff6b5c"/></svg></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="desc">The &ldquo;O&rdquo; of Openpaper as a ring, with a coral leaf in the counter — monogram + fleuron in one. Doubles as a lockup where the mark <em>is</em> the first letter (&ldquo;<b>O</b>penpaper&rdquo;).</p>
+    </div>
+
+    <!-- E — Stacked sheets -->
+    <div class="card">
+      <div class="tag"><span class="k">E</span><span class="name">Sheets</span></div>
+      <div class="row">
+        <svg class="big" viewBox="0 0 48 48" fill="none">
+          <rect x="9" y="11" width="22" height="28" rx="3.5" stroke="#8d8d8d" stroke-width="2.4"/>
+          <rect x="17" y="9" width="22" height="28" rx="3.5" fill="#0a0a0a" stroke="#f5f3ee" stroke-width="2.6"/>
+          <path d="M22 19h12M22 25h12M22 31h8" stroke="#ff6b5c" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div class="lockup">
+          <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><rect x="9" y="11" width="22" height="28" rx="3.5" stroke="#8d8d8d" stroke-width="2.8"/><rect x="17" y="9" width="22" height="28" rx="3.5" fill="#121212" stroke="#f5f3ee" stroke-width="3"/><path d="M22 19h12M22 25h12M22 31h8" stroke="#ff6b5c" stroke-width="2.8" stroke-linecap="round"/></svg>
+          <span class="wm">Openpaper</span>
+        </div>
+        <div class="favs">
+          <div class="fav dark"><svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="9" y="11" width="22" height="28" rx="3.5" stroke="#8d8d8d" stroke-width="3"/><rect x="17" y="9" width="22" height="28" rx="3.5" fill="#1c1c1c" stroke="#f5f3ee" stroke-width="3.2"/><path d="M22 20h12M22 27h9" stroke="#ff6b5c" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div class="fav dark sm"><svg width="17" height="17" viewBox="0 0 48 48" fill="none"><rect x="9" y="11" width="22" height="28" rx="4" stroke="#8d8d8d" stroke-width="3.4"/><rect x="17" y="9" width="22" height="28" rx="4" fill="#1c1c1c" stroke="#f5f3ee" stroke-width="3.6"/></svg></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="desc">Two offset sheets — a small &ldquo;stack of writing.&rdquo; Reads as paper + collection (a publication, many pieces). Slightly busier at the smallest sizes.</p>
+    </div>
+
+    <!-- spacer / note -->
+    <div class="card" style="justify-content:center;align-items:flex-start;background:transparent;border-style:dashed">
+      <div class="tag"><span class="k">↳</span><span class="name">On light surfaces</span></div>
+      <p class="desc" style="margin-bottom:6px">Each mark also needs a light-surface version (dark strokes) for the cream panels, email, and print. Quick preview of the favorites on cream:</p>
+      <div class="row">
+        <div class="onlight">
+          <svg width="34" height="34" viewBox="0 0 48 48" fill="none"><path d="M11 8.5A2.5 2.5 0 0 1 13.5 6H29l8 8v25.5a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 11 39.5z" stroke="#1c1814" stroke-width="2.6" stroke-linejoin="round"/><path d="M29 6v8h8" stroke="#1c1814" stroke-width="2.6" stroke-linejoin="round"/><path d="M17 25h14M17 31h9" stroke="#e8513f" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </div>
+        <div class="onlight">
+          <svg width="34" height="34" viewBox="0 0 48 48" fill="none"><path d="M24 5C14.5 13 14.5 31 24 43C33.5 31 33.5 13 24 5Z" fill="#e8513f"/><path d="M24 12V37" stroke="#fdf0d5" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="onlight">
+          <svg width="34" height="34" viewBox="0 0 48 48"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 5A19 19 0 1 0 24 43A19 19 0 0 0 24 5ZM24 15A9 9 0 1 1 24 33A9 9 0 0 1 24 15Z" fill="#1c1814"/><path d="M24 17.5C20.5 21 20.5 27 24 30.5C27.5 27 27.5 21 24 17.5Z" fill="#e8513f"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="sec">Wordmark treatments</h2>
+  <div class="grid">
+    <div class="wmcard">
+      <div class="wmrow"><span style="color:#f5f3ee">Open</span><span style="color:#ff6b5c">paper</span></div>
+      <p class="wmcaption">1 · Two-tone — &ldquo;Open&rdquo; in foreground, &ldquo;paper&rdquo; in coral. Simple, confident, works as a pure wordmark with no symbol.</p>
+    </div>
+    <div class="wmcard">
+      <div class="wmrow"><span style="color:#f5f3ee">Openpaper</span><span style="color:#ff6b5c">.</span></div>
+      <p class="wmcaption">2 · Single coral accent — one tone + a coral period/dot. Quiet, editorial, very Fraunces.</p>
+    </div>
+    <div class="wmcard">
+      <div class="wmrow" style="text-transform:lowercase"><span style="color:#f5f3ee">openpaper</span></div>
+      <p class="wmcaption">3 · Lowercase — softer, more &ldquo;product/app&rdquo; than &ldquo;masthead.&rdquo;</p>
+    </div>
+    <div class="wmcard">
+      <div class="wmrow" style="display:flex;align-items:center;gap:10px">
+        <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><path d="M24 5C14.5 13 14.5 31 24 43C33.5 31 33.5 13 24 5Z" fill="#ff6b5c"/><path d="M24 12V37" stroke="#0a0a0a" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span style="color:#f5f3ee">Openpaper</span>
+      </div>
+      <p class="wmcaption">4 · Mark + wordmark lockup (shown with the Fleuron) — the full horizontal logo for the nav bar.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

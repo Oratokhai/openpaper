@@ -34,6 +34,7 @@ ai-publication-platform/
 | Editor | **Tiptap v3** (ProseMirror) | Installed: StarterKit, CodeBlockLowlight, Mathematics (KaTeX), Image, Placeholder + custom AI-native nodes |
 | Language | **TypeScript** | Strict mode |
 | Icons | **Lucide React v1.17** | Note: brand icons (Github etc.) removed — use inline SVG |
+| Animation | **motion** (Framer Motion v12) | Added 2026-06-03 for the Dynamic Island rail morph (`<motion.aside layout>`); React 19-ready |
 | Fonts | **Fraunces** (display), **Lora** (prose), **Geist Sans/Mono** (UI) | Fraunces via `next/font/google` with axes: `["opsz", "SOFT", "WONK"]` |
 
 ## Backend (Phase 2 — in progress)
@@ -159,11 +160,17 @@ Custom-designed sign-in/sign-up pages (not Clerk's prebuilt components). Files:
 | Path | Purpose |
 |---|---|
 | `apps/web/src/app/page.tsx` | Landing page |
+| `apps/web/src/app/docs/page.tsx` | Public **/docs** — how-to + reference (sticky TOC) |
+| `apps/web/src/components/docs/docs-toc.tsx` | Docs sticky scroll-spy TOC (IntersectionObserver) |
 | `apps/web/src/app/(app)/home/page.tsx` | Authenticated home feed |
 | `apps/web/src/app/(app)/explore/page.tsx` | Explore / discovery |
 | `apps/web/src/app/(app)/[username]/page.tsx` | Builder profile page |
 | `apps/web/src/app/(app)/[username]/[slug]/page.tsx` | Article reader (signature 3-zone layout) |
-| `apps/web/src/app/(app)/write/page.tsx` | Tiptap article editor |
+| `apps/web/src/app/(app)/write/page.tsx` | Tiptap article editor (+ floating command bar, desktop) |
+| `apps/web/src/app/(app)/studio/page.tsx` | Writer Studio — drafts + published workspace |
+| `apps/web/src/components/studio/studio-board.tsx` | Studio client board (filter pills + lists) |
+| `apps/web/src/components/layout/sidebar-rail.tsx` | Desktop **Dynamic Island** rail (motion morph) + mobile bottom bar |
+| `apps/web/src/components/layout/island-context.tsx` | `IslandProvider` / `useIsland()` — context channel pages use to morph the rail |
 | `apps/web/src/app/(app)/models/page.tsx` | Models directory (55 models, filterable) |
 | `apps/web/src/app/(app)/models/[slug]/page.tsx` | Individual model page |
 | `apps/web/src/components/article/blocks/` | AI-native block components (reusable) |
@@ -182,10 +189,11 @@ Custom-designed sign-in/sign-up pages (not Clerk's prebuilt components). Files:
 | `--foreground` | `#f5f3ee` | Primary text |
 | `--card` | `#121212` | Card surfaces |
 | `--border` | `rgba(255,255,255,0.07)` | Borders |
-| `--brand` | `#6366f1` | Indigo accent |
-| `--brand-hover` | `#5457e0` | Indigo hover |
-| `--cream` | `#efeae0` | Cream panel bg |
-| `--cream-foreground` | `#1a1a1a` | Cream panel text |
+| `--brand` | `#ff6b5c` | Signal coral accent (was indigo→olive→coral) |
+| `--brand-hover` | `#e8513f` | Deep coral hover |
+| `--brand-muted` | `rgba(255,107,92,0.14)` | Accent tint bg |
+| `--cream` | `#fdf0d5` | Cream panel bg |
+| `--cream-foreground` | `#4a1410` | Cream panel text (coral-brown) |
 | `--font-fraunces` | CSS variable | Display/heading font |
 | `--font-lora` | CSS variable | Prose/article body |
 | `--font-geist-sans` | CSS variable | UI font |

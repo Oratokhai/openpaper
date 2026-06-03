@@ -28,12 +28,13 @@ export default async function LandingPage() {
           <nav className="hidden md:flex items-center gap-9 text-[15px] text-[#8a8a8a]">
             <Link href="/explore" className="hover:text-[#f5f3ee] transition-colors">Explore</Link>
             <Link href="/models"  className="hover:text-[#f5f3ee] transition-colors">Models</Link>
+            <Link href="/docs"    className="hover:text-[#f5f3ee] transition-colors">Docs</Link>
           </nav>
 
           <div className="flex items-center gap-2">
             <Link
               href="/signup"
-              className="bg-[#606c38] text-white text-sm px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-[#283618] transition-colors"
+              className="bg-[#ff6b5c] text-white text-sm px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-[#e8513f] transition-colors"
             >
               Start writing
             </Link>
@@ -57,7 +58,7 @@ export default async function LandingPage() {
           {/* Left: copy — vertically centred within the section */}
           <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 flex items-center min-h-[600px] lg:min-h-[860px]">
             <div className="max-w-[560px]">
-              <p className="text-[#606c38] text-[15px] font-medium tracking-wide mb-6">
+              <p className="text-[#ff6b5c] text-[15px] font-medium tracking-wide mb-6">
                 Written by the people building it
               </p>
 
@@ -82,7 +83,7 @@ export default async function LandingPage() {
               <div className="flex items-center gap-4">
                 <Link
                   href="/signup"
-                  className="bg-[#606c38] text-white text-base px-7 py-3.5 rounded-xl font-medium hover:bg-[#283618] transition-colors"
+                  className="bg-[#ff6b5c] text-white text-base px-7 py-3.5 rounded-xl font-medium hover:bg-[#e8513f] transition-colors"
                 >
                   Start writing
                 </Link>
@@ -163,7 +164,7 @@ export default async function LandingPage() {
             ].map((f) => (
               <div key={f.title}>
                 <div className="w-11 h-11 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center mb-5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#606c38]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff6b5c]" />
                 </div>
                 <h3 className="text-[#f5f3ee] text-xl font-medium mb-3">{f.title}</h3>
                 <p className="text-[15px] text-[#969696] leading-relaxed">{f.body}</p>
@@ -175,7 +176,7 @@ export default async function LandingPage() {
         {/* ── Three kinds of publication ──────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-8 py-20 md:py-36 border-t border-white/[0.05]">
           <div className="text-center mb-20">
-            <p className="text-[#606c38] text-[15px] font-medium tracking-wide mb-4">
+            <p className="text-[#ff6b5c] text-[15px] font-medium tracking-wide mb-4">
               Three kinds of writing
             </p>
             <h2 className="text-[#f5f3ee] text-4xl sm:text-5xl mb-6" style={{ fontFamily: "var(--font-fraunces)" }}>
@@ -190,23 +191,23 @@ export default async function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8 text-left">
             {[
               {
-                icon: <FileText className="w-5 h-5 text-[#606c38]" />,
+                icon: <FileText className="w-5 h-5 text-[#ff6b5c]" />,
                 title: "Articles",
                 body: "Explainers, deep-dives, announcements, and takes. The default — anything that informs or argues a point.",
               },
               {
-                icon: <GraduationCap className="w-5 h-5 text-[#606c38]" />,
+                icon: <GraduationCap className="w-5 h-5 text-[#ff6b5c]" />,
                 title: "Tutorials",
                 body: "Hands-on, step-by-step guides. How to actually build the thing, with the prompts and code that make it work.",
               },
               {
-                icon: <BarChart3 className="w-5 h-5 text-[#606c38]" />,
+                icon: <BarChart3 className="w-5 h-5 text-[#ff6b5c]" />,
                 title: "Benchmarks",
                 body: "Data and comparisons. Evals, test results, and head-to-heads that show how models really perform.",
               },
             ].map((k) => (
               <div key={k.title} className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-7">
-                <div className="w-11 h-11 rounded-xl bg-[#606c38]/10 border border-[#606c38]/20 flex items-center justify-center mb-5">
+                <div className="w-11 h-11 rounded-xl bg-[#ff6b5c]/10 border border-[#ff6b5c]/20 flex items-center justify-center mb-5">
                   {k.icon}
                 </div>
                 <h3 className="text-[#f5f3ee] text-xl font-medium mb-3">{k.title}</h3>
@@ -220,7 +221,7 @@ export default async function LandingPage() {
         <section className="max-w-6xl mx-auto px-8 py-20 md:py-36">
           {/* Section header */}
           <div className="text-center mb-20">
-            <p className="text-[#606c38] text-[15px] font-medium tracking-wide mb-4">
+            <p className="text-[#ff6b5c] text-[15px] font-medium tracking-wide mb-4">
               Not just another Substack
             </p>
             <h2
@@ -245,7 +246,7 @@ export default async function LandingPage() {
               {/* Prompt Blocks */}
               <div className="rounded-2xl border border-white/[0.07] bg-[#111] p-9 flex flex-col gap-7">
                 <div>
-                  <span className="text-[12px] text-[#606c38] font-medium uppercase tracking-widest">Prompt Blocks</span>
+                  <span className="text-[12px] text-[#ff6b5c] font-medium uppercase tracking-widest">Prompt Blocks</span>
                   <h3 className="text-[#f5f3ee] text-2xl mt-3 mb-3" style={{ fontFamily: "var(--font-fraunces)" }}>
                     First-class prompts, not code blocks
                   </h3>
@@ -256,18 +257,18 @@ export default async function LandingPage() {
                 {/* Visual mockup */}
                 <div className="rounded-xl bg-[#0a0a0a] border border-white/[0.06] overflow-hidden">
                   <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]">
-                    <span className="text-[10px] text-[#606c38] font-medium uppercase tracking-widest">Prompt</span>
+                    <span className="text-[10px] text-[#ff6b5c] font-medium uppercase tracking-widest">Prompt</span>
                     <span className="text-[10px] text-[#858585] bg-white/[0.04] px-2 py-0.5 rounded">Claude Sonnet 4.6</span>
                   </div>
                   <div className="px-4 py-3 font-mono text-[12px] leading-relaxed">
-                    <p className="text-[#bbb]">You are a <span className="text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded">{"{{role}}"}</span> helping a user</p>
-                    <p className="text-[#bbb]">understand <span className="text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded">{"{{topic}}"}</span>.</p>
+                    <p className="text-[#bbb]">You are a <span className="text-[#ff9a8f] bg-[#ff9a8f]/10 px-1 rounded">{"{{role}}"}</span> helping a user</p>
+                    <p className="text-[#bbb]">understand <span className="text-[#ff9a8f] bg-[#ff9a8f]/10 px-1 rounded">{"{{topic}}"}</span>.</p>
                     <p className="text-[#bbb] mt-2">Be concise. Cite sources.</p>
-                    <p className="text-[#bbb]">User: <span className="text-[#a3b18a] bg-[#a3b18a]/10 px-1 rounded">{"{{input}}"}</span></p>
+                    <p className="text-[#bbb]">User: <span className="text-[#ff9a8f] bg-[#ff9a8f]/10 px-1 rounded">{"{{input}}"}</span></p>
                   </div>
                   <div className="flex items-center justify-between px-4 py-2 border-t border-white/[0.04]">
                     <span className="text-[10px] text-[#787878]">47 tokens</span>
-                    <button className="text-[10px] text-[#606c38] font-medium">Copy prompt</button>
+                    <button className="text-[10px] text-[#ff6b5c] font-medium">Copy prompt</button>
                   </div>
                 </div>
               </div>
@@ -275,7 +276,7 @@ export default async function LandingPage() {
               {/* Model Output Blocks */}
               <div className="rounded-2xl border border-white/[0.07] bg-[#111] p-9 flex flex-col gap-7">
                 <div>
-                  <span className="text-[12px] text-[#606c38] font-medium uppercase tracking-widest">Model Output Blocks</span>
+                  <span className="text-[12px] text-[#ff6b5c] font-medium uppercase tracking-widest">Model Output Blocks</span>
                   <h3 className="text-[#f5f3ee] text-2xl mt-3 mb-3" style={{ fontFamily: "var(--font-fraunces)" }}>
                     Responses with provenance
                   </h3>
@@ -286,7 +287,7 @@ export default async function LandingPage() {
                 {/* Visual mockup */}
                 <div className="rounded-xl bg-[#0a0a0a] border border-white/[0.06] overflow-hidden">
                   <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]">
-                    <span className="text-[10px] text-[#606c38] font-medium uppercase tracking-widest">Model Output</span>
+                    <span className="text-[10px] text-[#ff6b5c] font-medium uppercase tracking-widest">Model Output</span>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] text-[#858585]">Claude Opus 4.8</span>
                       <span className="text-[10px] text-[#787878]">· May 28, 2026</span>
@@ -300,7 +301,7 @@ export default async function LandingPage() {
                   </div>
                   <div className="flex items-center justify-between px-4 py-2 border-t border-white/[0.04]">
                     <span className="text-[10px] text-[#787878]">Generated with temp 0.3</span>
-                    <button className="text-[10px] text-[#606c38] font-medium">Copy</button>
+                    <button className="text-[10px] text-[#ff6b5c] font-medium">Copy</button>
                   </div>
                 </div>
               </div>
@@ -309,12 +310,12 @@ export default async function LandingPage() {
             {/* Row 2: Model Pages — full width feature */}
             <div className="rounded-2xl border border-white/[0.07] bg-[#111] p-9 md:p-12 grid md:grid-cols-2 gap-10 items-center">
               <div>
-                <span className="text-[12px] text-[#606c38] font-medium uppercase tracking-widest">Model Mentions & Pages</span>
+                <span className="text-[12px] text-[#ff6b5c] font-medium uppercase tracking-widest">Model Mentions & Pages</span>
                 <h3 className="text-[#f5f3ee] text-4xl mt-4 mb-4 leading-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
                   AI models are first-class citizens
                 </h3>
                 <p className="text-[15px] text-[#969696] leading-relaxed mb-5">
-                  Type <code className="text-[#a3b18a] bg-white/[0.05] px-1.5 py-0.5 rounded text-[12px]">@claude-sonnet-4</code> or <code className="text-[#a3b18a] bg-white/[0.05] px-1.5 py-0.5 rounded text-[12px]">@gpt-4o</code> in any article and it becomes a live link to that model&apos;s page — showing specs, version history, and every article ever written about it on Openpaper.
+                  Type <code className="text-[#ff9a8f] bg-white/[0.05] px-1.5 py-0.5 rounded text-[12px]">@claude-sonnet-4</code> or <code className="text-[#ff9a8f] bg-white/[0.05] px-1.5 py-0.5 rounded text-[12px]">@gpt-4o</code> in any article and it becomes a live link to that model&apos;s page — showing specs, version history, and every article ever written about it on Openpaper.
                 </p>
                 <p className="text-[15px] text-[#969696] leading-relaxed">
                   Follow a model. Get notified when new writing is published about it. This is what makes Openpaper AI-native — not just AI-flavoured.
@@ -328,7 +329,7 @@ export default async function LandingPage() {
                       <p className="text-[10px] text-[#858585] mb-0.5">Anthropic</p>
                       <p className="text-[#f5f3ee] text-sm font-medium">Claude Opus 4.8</p>
                     </div>
-                    <span className="text-[11px] text-[#606c38] border border-[#606c38]/30 px-3 py-1 rounded-full">Following</span>
+                    <span className="text-[11px] text-[#ff6b5c] border border-[#ff6b5c]/30 px-3 py-1 rounded-full">Following</span>
                   </div>
                   <div className="flex gap-4 mt-3 text-[10px] text-[#858585]">
                     <span>1M ctx</span>
@@ -359,7 +360,7 @@ export default async function LandingPage() {
               {/* AI Taxonomy */}
               <div className="rounded-2xl border border-white/[0.07] bg-[#111] p-9 flex flex-col gap-7">
                 <div>
-                  <span className="text-[12px] text-[#606c38] font-medium uppercase tracking-widest">AI Taxonomy</span>
+                  <span className="text-[12px] text-[#ff6b5c] font-medium uppercase tracking-widest">AI Taxonomy</span>
                   <h3 className="text-[#f5f3ee] text-2xl mt-3 mb-3" style={{ fontFamily: "var(--font-fraunces)" }}>
                     Tags that actually mean something
                   </h3>
@@ -383,7 +384,7 @@ export default async function LandingPage() {
                         key={tag.t}
                         className={`text-[11px] px-2.5 py-1 rounded-full border transition-all ${
                           tag.f
-                            ? "text-[#a3b18a] bg-[#606c38]/10 border-[#606c38]/20"
+                            ? "text-[#ff9a8f] bg-[#ff6b5c]/10 border-[#ff6b5c]/20"
                             : "text-[#858585] bg-white/[0.03] border-white/[0.06]"
                         }`}
                       >
@@ -397,7 +398,7 @@ export default async function LandingPage() {
               {/* Freshness Stamps */}
               <div className="rounded-2xl border border-white/[0.07] bg-[#111] p-9 flex flex-col gap-7">
                 <div>
-                  <span className="text-[12px] text-[#606c38] font-medium uppercase tracking-widest">Freshness Stamps</span>
+                  <span className="text-[12px] text-[#ff6b5c] font-medium uppercase tracking-widest">Freshness Stamps</span>
                   <h3 className="text-[#f5f3ee] text-2xl mt-3 mb-3" style={{ fontFamily: "var(--font-fraunces)" }}>
                     AI writing has a shelf life
                   </h3>
@@ -442,14 +443,14 @@ export default async function LandingPage() {
 
           <div className="flex flex-wrap justify-center gap-5">
             {[
-              { label: "Prompts",  c: "from-[#606c38] to-[#283618]" },
+              { label: "Prompts",  c: "from-[#ff6b5c] to-[#c9443a]" },
               { label: "RAG",     c: "from-[#06b6d4] to-[#3b82f6]" },
               { label: "Agents",  c: "from-[#f59e0b] to-[#ef4444]" },
-              { label: "Models",  c: "from-[#283618] to-[#a3b18a]" },
+              { label: "Models",  c: "from-[#e8513f] to-[#ff9a8f]" },
               { label: "Tuning",  c: "from-[#10b981] to-[#06b6d4]" },
               { label: "Evals",   c: "from-[#ef4444] to-[#f59e0b]" },
-              { label: "Infra",   c: "from-[#3b82f6] to-[#606c38]" },
-              { label: "Ethics",  c: "from-[#a3b18a] to-[#283618]" },
+              { label: "Infra",   c: "from-[#3b82f6] to-[#ff6b5c]" },
+              { label: "Ethics",  c: "from-[#ff9a8f] to-[#e8513f]" },
             ].map((t) => (
               <div key={t.label} className="flex flex-col items-center gap-3">
                 <div className={`w-18 h-18 rounded-2xl bg-gradient-to-br ${t.c} flex items-center justify-center shadow-lg`} style={{ width: 72, height: 72 }}>
@@ -540,7 +541,7 @@ export default async function LandingPage() {
                   { t: "Followers & comments", s: "Build an audience that actually engages" },
                 ].map((f, i) => (
                   <div key={f.t} className="flex items-start gap-4">
-                    <span className="w-7 h-7 rounded-full bg-[#606c38]/10 text-[#606c38] text-[13px] font-semibold flex items-center justify-center shrink-0">
+                    <span className="w-7 h-7 rounded-full bg-[#ff6b5c]/10 text-[#ff6b5c] text-[13px] font-semibold flex items-center justify-center shrink-0">
                       {i + 1}
                     </span>
                     <div className="flex-1 min-w-0">
@@ -563,6 +564,7 @@ export default async function LandingPage() {
           <p className="text-[#858585] text-[15px]">Written by the people building it.</p>
           <nav className="flex items-center gap-8 text-[15px] text-[#858585]">
             <Link href="/about"   className="hover:text-[#f5f3ee] transition-colors">About</Link>
+            <Link href="/docs"    className="hover:text-[#f5f3ee] transition-colors">Docs</Link>
             <Link href="/explore" className="hover:text-[#f5f3ee] transition-colors">Explore</Link>
             <Link href="/models"  className="hover:text-[#f5f3ee] transition-colors">Models</Link>
             <Link href="/privacy" className="hover:text-[#f5f3ee] transition-colors">Privacy</Link>

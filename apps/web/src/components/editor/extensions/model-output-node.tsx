@@ -48,7 +48,7 @@ function ModelOutputView({ node, updateAttributes, editor }: NodeViewProps) {
       data-drag-handle
     >
       <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-white/[0.06]">
-        <span className="text-[10px] uppercase tracking-widest font-medium text-[#606c38]">
+        <span className="text-[10px] uppercase tracking-widest font-medium text-[#ff6b5c]">
           Model Output
         </span>
         <div className="flex items-center gap-2">

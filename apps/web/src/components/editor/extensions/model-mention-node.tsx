@@ -38,7 +38,7 @@ function ModelMentionView({ node }: NodeViewProps) {
 
   return (
     <NodeViewWrapper as="span" className="whitespace-nowrap">
-      <span className="text-[#a3b18a] bg-[#a3b18a]/10 px-1.5 py-0.5 rounded text-[0.95em] font-medium">
+      <span className="text-[#ff9a8f] bg-[#ff9a8f]/10 px-1.5 py-0.5 rounded text-[0.95em] font-medium">
         @{label}
       </span>
     </NodeViewWrapper>

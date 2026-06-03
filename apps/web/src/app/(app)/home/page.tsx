@@ -103,7 +103,7 @@ export default async function HomePage({
                   href={buildHref(activeTab, f.value)}
                   className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
                     typeFilter === f.value
-                      ? "bg-[#606c38] text-white"
+                      ? "bg-[#ff6b5c] text-white"
                       : "text-[#888] bg-white/[0.04] border border-white/[0.07] hover:text-[#f5f3ee] hover:border-white/[0.14]"
                   }`}
                 >
@@ -174,7 +174,7 @@ function EmptyFeed({ tab, typeFilter }: { tab: Tab; typeFilter: TypeFilter }) {
       <div className="py-20 text-center">
         <p className="text-[#888] text-[15px] mb-2">You&apos;re not following anyone yet</p>
         <p className="text-[#858585] text-[13px] mb-6">Follow writers and their work shows up here.</p>
-        <Link href="/home?tab=trending" className="px-5 py-2.5 rounded-xl bg-[#606c38] text-white text-sm font-medium hover:bg-[#283618] transition-colors">
+        <Link href="/home?tab=trending" className="px-5 py-2.5 rounded-xl bg-[#ff6b5c] text-white text-sm font-medium hover:bg-[#e8513f] transition-colors">
           Discover writers
         </Link>
       </div>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Openpaper — Paper Studio (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Lora:ital,wght@0,400;0,500;1,400&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Paper light mode — mapped warm from --cream #fdf0d5, desaturated for full-page comfort */
+    --paper:        #f4efe3;
+    --paper-panel:  #f7f3ea;   /* faint lift for list rows on hover */
+    --ink:          #1c1814;   /* warm near-black text */
+    --ink-soft:     #6f675b;   /* secondary */
+    --ink-faint:    #9b9486;   /* meta */
+    --line:         rgba(28,24,20,0.10);
+    --line-soft:    rgba(28,24,20,0.06);
+
+    --coral:        #e85c54;   /* the accent you wanted */
+    --coral-deep:   #d2473f;
+    --coral-tint:   rgba(232,92,84,0.12);
+
+    --bar:          #1b1814;   /* floating command pill */
+    --bar-soft:     rgba(255,255,255,0.10);
+
+    --font-display: "Fraunces", Georgia, serif;
+    --font-prose:   "Lora", Georgia, serif;
+    --font-ui:      "Geist", -apple-system, sans-serif;
+    --font-mono:    "Geist Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    /* faint paper grain */
+    background-image:
+      radial-gradient(rgba(28,24,20,0.018) 1px, transparent 1px);
+    background-size: 3px 3px;
+    overflow: hidden;
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 76px 400px 1fr;
+    height: 100vh;
+  }
+
+  /* ─── Icon rail ─────────────────────────────────────────── */
+  .rail {
+    border-right: 1px solid var(--line-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 22px 0;
+    gap: 26px;
+  }
+  .rail .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(140deg, #c9a8d4, #e6b8a0);
+    border: 2px solid rgba(28,24,20,0.65);
+    display: grid; place-items: center;
+    font-size: 20px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset;
+  }
+  .rail .nav { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+  .rail button {
+    width: 46px; height: 46px; border: none; background: transparent;
+    border-radius: 13px; color: var(--ink-soft); cursor: pointer;
+    display: grid; place-items: center; transition: all .18s ease;
+  }
+  .rail button:hover { background: rgba(28,24,20,0.05); color: var(--ink); }
+  .rail button.active { background: rgba(28,24,20,0.07); color: var(--ink); }
+  .rail .spacer { flex: 1; }
+
+  /* ─── Work panel ────────────────────────────────────────── */
+  .work {
+    border-right: 1px solid var(--line);
+    padding: 30px 34px;
+    overflow-y: auto;
+  }
+  .greeting { font-size: 15px; color: var(--ink-soft); font-weight: 500; }
+  .greeting b { color: var(--coral); font-weight: 600; }
+  .work h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 10px 0 26px;
+    font-variation-settings: "opsz" 60, "SOFT" 30, "WONK" 0;
+  }
+
+  .pills { display: flex; gap: 9px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 6px; -ms-overflow-style: none; scrollbar-width: none; }
+  .pills::-webkit-scrollbar { display: none; }
+  .pill {
+    flex: 0 0 auto; padding: 9px 18px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 500; cursor: pointer;
+    background: rgba(28,24,20,0.05); color: var(--ink-soft);
+    border: 1px solid transparent; transition: all .16s ease; white-space: nowrap;
+  }
+  .pill:hover { background: rgba(28,24,20,0.08); color: var(--ink); }
+  .pill.active { background: var(--ink); color: var(--paper); }
+
+  .scrollhint { height: 8px; border-radius: 999px; background: rgba(28,24,20,0.06); margin: 14px 0 30px; }
+
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .section-head h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .section-head a { font-size: 13px; color: var(--coral); text-decoration: none; font-weight: 500; }
+  .section-head a:hover { color: var(--coral-deep); }
+
+  .drafts { display: flex; flex-direction: column; gap: 6px; margin-bottom: 36px; }
+  .draft {
+    display: flex; gap: 16px; align-items: center; padding: 12px;
+    border-radius: 16px; cursor: pointer; transition: background .16s ease;
+  }
+  .draft:hover { background: var(--paper-panel); }
+  .draft.current { background: var(--paper-panel); box-shadow: inset 0 0 0 1px var(--line); }
+  .thumb {
+    width: 92px; height: 72px; border-radius: 12px; flex: 0 0 auto;
+    box-shadow: 0 2px 8px rgba(28,24,20,0.10);
+  }
+  .thumb.a { background: linear-gradient(150deg, #2e3d2a, #6a7d4e); }
+  .thumb.b { background: linear-gradient(150deg, #cdd3d8, #9aa6ad); }
+  .thumb.c { background: linear-gradient(150deg, #d8c4a8, #b89b78); }
+  .draft .meta-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 5px; }
+  .draft .meta-sub { font-size: 13px; color: var(--ink-faint); }
+
+  /* ─── Editor canvas ─────────────────────────────────────── */
+  .canvas { overflow-y: auto; padding: 30px 0 140px; position: relative; }
+  .canvas-inner { max-width: 720px; margin: 0 auto; padding: 0 56px; }
+
+  .breadcrumb-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 44px;
+  }
+  .breadcrumb { font-size: 14px; color: var(--ink-soft); display: flex; align-items: center; gap: 8px; }
+  .breadcrumb .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+  .breadcrumb .status { color: var(--coral); font-weight: 600; }
+  .breadcrumb .sep { color: var(--ink-faint); }
+  .wordcount { font-size: 13.5px; color: var(--ink-faint); }
+
+  .canvas h1.title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 62px;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 36px;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  }
+  .canvas p {
+    font-family: var(--font-prose);
+    font-size: 20px;
+    line-height: 1.62;
+    color: #2b2620;
+    margin-bottom: 26px;
+  }
+  .canvas .hl {
+    color: var(--coral-deep);
+    /* the coral emphasis sentence from the reference */
+  }
+
+  /* AI-native prompt block, paper-mode styling */
+  .prompt-block {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--coral);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.45);
+    padding: 18px 20px;
+    margin: 8px 0 30px;
+    box-shadow: 0 1px 2px rgba(28,24,20,0.04);
+  }
+  .prompt-block .label {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--coral-deep); margin-bottom: 10px; display: flex; gap: 8px; align-items: center;
+  }
+  .prompt-block .label::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--coral); }
+  .prompt-block p {
+    font-family: var(--font-mono); font-size: 14px; line-height: 1.55;
+    color: #3a342c; margin: 0;
+  }
+
+  /* ─── Floating command bar ──────────────────────────────── */
+  .commandbar {
+    position: fixed; bottom: 28px; left: calc(50% + 238px);
+    transform: translateX(-50%);
+    display: flex; align-items: center; gap: 4px;
+    background: var(--bar); color: #f4efe3;
+    padding: 8px 10px; border-radius: 999px;
+    box-shadow: 0 18px 40px -12px rgba(28,24,20,0.45), 0 2px 8px rgba(28,24,20,0.2);
+  }
+  .cmd {
+    display: flex; align-items: center; gap: 9px;
+    padding: 11px 18px; border-radius: 999px; border: none; cursor: pointer;
+    background: transparent; color: #e9e3d8; font-family: var(--font-ui);
+    font-size: 14.5px; font-weight: 500; transition: background .15s ease;
+  }
+  .cmd:hover { background: var(--bar-soft); }
+  .cmd svg { width: 18px; height: 18px; }
+  .cmd-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.16); margin: 0 6px; }
+  .cmd.publish {
+    background: var(--coral); color: #fff; font-weight: 600; padding: 11px 24px;
+  }
+  .cmd.publish:hover { background: var(--coral-deep); }
+  .cmd.more { padding: 11px 14px; }
+
+  /* entrance */
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .work > *, .canvas-inner > * { animation: rise .5s cubic-bezier(.2,.7,.2,1) backwards; }
+  .work > *:nth-child(1){animation-delay:.02s}.work > *:nth-child(2){animation-delay:.06s}
+  .work > *:nth-child(3){animation-delay:.10s}.work > *:nth-child(4){animation-delay:.14s}
+  .work > *:nth-child(5){animation-delay:.18s}.work > *:nth-child(6){animation-delay:.22s}
+  .canvas-inner > *:nth-child(2){animation-delay:.16s}.canvas-inner > *:nth-child(3){animation-delay:.22s}
+  .commandbar { animation: rise .6s cubic-bezier(.2,.7,.2,1) .35s backwards; }
+
+  .badge { position: fixed; top: 16px; right: 20px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); border: 1px solid var(--line); padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+<div class="badge">Mockup · Paper mode + coral</div>
+<div class="app">
+
+  <!-- icon rail -->
+  <aside class="rail">
+    <div class="avatar">🦊</div>
+    <nav class="nav">
+      <button class="active" title="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+      </button>
+      <button title="Drafts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+      </button>
+      <button title="Stats">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11"/><path d="M12 20V4"/><path d="M19 20v-6"/></svg>
+      </button>
+    </nav>
+    <div class="spacer"></div>
+    <button title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </aside>
+
+  <!-- work panel -->
+  <section class="work">
+    <div class="greeting">Hey, <b>Dave!</b></div>
+    <h1>What will you<br/>write today?</h1>
+
+    <div class="pills">
+      <div class="pill active">All Drafts</div>
+      <div class="pill">Tutorials</div>
+      <div class="pill">Benchmarks</div>
+      <div class="pill">Essays</div>
+      <div class="pill">Research</div>
+    </div>
+    <div class="scrollhint"></div>
+
+    <div class="section-head"><h2>Recent Drafts</h2><a href="#">See all</a></div>
+    <div class="drafts">
+      <div class="draft current">
+        <div class="thumb a"></div>
+        <div><div class="meta-title">Claude Opus 4.8 broke my eval harness</div><div class="meta-sub">Edited 2h ago · Benchmark</div></div>
+      </div>
+      <div class="draft">
+        <div class="thumb b"></div>
+        <div><div class="meta-title">Sonnet vs GPT: a RAG showdown</div><div class="meta-sub">Edited yesterday · Benchmark</div></div>
+      </div>
+    </div>
+
+    <div class="section-head"><h2>Published</h2><a href="#">See all</a></div>
+    <div class="drafts">
+      <div class="draft">
+        <div class="thumb c"></div>
+        <div><div class="meta-title">Why I built Openpaper</div><div class="meta-sub">Published Oct 12 · 312 reads</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- editor canvas -->
+  <main class="canvas">
+    <div class="canvas-inner">
+      <div class="breadcrumb-row">
+        <div class="breadcrumb"><span class="dot"></span><span class="status">Draft</span><span class="sep">/</span><span>Claude Opus 4.8 broke my eval harness</span></div>
+        <div class="wordcount">1,240 words</div>
+      </div>
+
+      <h1 class="title">The day the<br/>benchmark lied</h1>
+
+      <p>I had a harness I trusted. Two hundred graded tasks, a fixed rubric, a number I could quote in a standup. Then I swapped the model and the number went <span class="hl">up by nine points overnight — and I almost shipped that result without reading a single transcript.</span></p>
+
+      <p>The first rule of evals nobody tells you: a score that moves the way you wanted is the most dangerous score there is. So before I believed it, I went back to the prompt that produced the jump.</p>
+
+      <div class="prompt-block">
+        <div class="label">Prompt · grader</div>
+        <p>You are grading a model's answer against a reference. Return PASS only if every claim in the answer is supported by the reference. Be strict. Think step by step, then output a single token.</p>
+      </div>
+
+      <p>The model hadn't gotten smarter. It had gotten better at sounding like the rubric — and my grader, reading for confidence, rewarded the performance. The benchmark didn't lie. I did, by trusting a delta I never inspected.</p>
+    </div>
+  </main>
+</div>
+
+<!-- floating command bar -->
+<div class="commandbar">
+  <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Format</button>
+  <button class="cmd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Search</button>
+  <div class="cmd-divider"></div>
+  <button class="cmd publish">Publish</button>
+  <button class="cmd more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg></button>
+</div>
+</body>
+</html>

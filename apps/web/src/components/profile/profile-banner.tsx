@@ -31,14 +31,14 @@ export function ProfileBanner({ bannerUrl, isSelf }: { bannerUrl: string | null;
   };
 
   return (
-    <div className="h-40 rounded-3xl bg-gradient-to-br from-[#606c38] via-[#283618] to-[#1a2410] relative overflow-hidden group">
+    <div className="h-40 rounded-3xl bg-gradient-to-br from-[#ff6b5c] via-[#e8513f] to-[#3a0f0b] relative overflow-hidden group">
       {bannerUrl && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={bannerUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
       )}
       <div
         className="absolute inset-0 opacity-40"
-        style={{ background: "radial-gradient(ellipse at 30% 20%, #a3b18a 0%, transparent 60%)" }}
+        style={{ background: "radial-gradient(ellipse at 30% 20%, #ff9a8f 0%, transparent 60%)" }}
       />
 
       {isSelf && (

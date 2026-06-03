@@ -45,7 +45,7 @@ export async function sendArticleToSubscribers(
         subtitle={row.article.subtitle}
         authorName={row.author.name}
         readingTime={row.article.readingTime ?? ""}
-        cover={row.article.coverGradient ?? "#606c38"}
+        cover={row.article.coverGradient ?? "#ff6b5c"}
         url={url}
         content={row.article.content}
       />

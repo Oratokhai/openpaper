@@ -30,7 +30,7 @@ export default async function ModelsPage({
         <p className="text-[#969696] text-base max-w-xl">
           {mockModels.length} models across {companies.length - 1} labs, each a living page of
           community writing. Follow a model to get notified when new articles drop — and mention any
-          of them in your own with <span className="text-[#a3b18a]">@model</span>.
+          of them in your own with <span className="text-[#ff9a8f]">@model</span>.
         </p>
       </div>
 
