@@ -71,7 +71,7 @@ export default function WritePage() {
   const [publishing, setPublishing] = useState(false);
   const [pubError, setPubError] = useState("");
   const [draftSaved, setDraftSaved] = useState(false);
-  const [result, setResult] = useState<{ username: string; slug: string } | null>(null);
+  const [result, setResult] = useState<{ username: string; slug: string; firstPublish?: boolean } | null>(null);
 
   // Editing an existing article: ?edit=<id>
   const [articleId, setArticleId] = useState<string | null>(null);
@@ -225,7 +225,7 @@ export default function WritePage() {
     });
 
     if (res.status === "published") {
-      setResult({ username: res.username, slug: res.slug });
+      setResult({ username: res.username, slug: res.slug, firstPublish: res.firstPublish });
       setPublished(true);
     } else {
       setResult({ username: res.username, slug: res.slug });
@@ -464,6 +464,7 @@ export default function WritePage() {
             title={title || "Untitled"}
             username={result?.username ?? "me"}
             slug={articleSlug}
+            firstPublish={result?.firstPublish ?? false}
             copied={copied}
             onCopy={handleCopy}
             onClose={() => { setPanelOpen(false); setPublished(false); }}
@@ -663,25 +664,104 @@ export default function WritePage() {
   );
 }
 
-function PublishedState({
-  title, username, slug, copied, onCopy, onClose,
-}: {
-  title: string; username: string; slug: string; copied: boolean; onCopy: () => void; onClose: () => void;
-}) {
+const XIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
+function Confetti() {
+  // Self-contained burst — no external dep. Brand coral/cream palette.
+  const colors = ["#ff6b5c", "#ff9a8f", "#fdf0d5", "#e8513f", "#ffffff"];
+  const pieces = Array.from({ length: 42 }, (_, i) => i);
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-8 text-center gap-6">
-      <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-        <CheckCircle className="w-7 h-7 text-emerald-400" />
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      <style>{`
+        @keyframes op-confetti-fall {
+          0%   { transform: translateY(-10%) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+      `}</style>
+      {pieces.map((i) => {
+        const left = (i * 97) % 100;
+        const delay = (i % 10) * 0.12;
+        const dur = 2.4 + ((i * 13) % 18) / 10;
+        const size = 6 + (i % 4) * 2;
+        const color = colors[i % colors.length];
+        return (
+          <span
+            key={i}
+            style={{
+              position: "absolute",
+              top: "-12px",
+              left: `${left}%`,
+              width: size,
+              height: size * 1.6,
+              background: color,
+              borderRadius: 1,
+              animation: `op-confetti-fall ${dur}s linear ${delay}s forwards`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function PublishedState({
+  title, username, slug, firstPublish, copied, onCopy, onClose,
+}: {
+  title: string; username: string; slug: string; firstPublish: boolean;
+  copied: boolean; onCopy: () => void; onClose: () => void;
+}) {
+  const url =
+    typeof window !== "undefined" ? `${window.location.origin}/${username}/${slug}` : `/${username}/${slug}`;
+  const shareText = firstPublish
+    ? `I just published my first piece on Openpaper: "${title}"`
+    : `"${title}" — new on Openpaper`;
+  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+  const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+
+  return (
+    <div className="relative flex-1 flex flex-col items-center justify-center px-8 text-center gap-6">
+      {firstPublish && <Confetti />}
+
+      <div
+        className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+          firstPublish
+            ? "bg-[#ff6b5c]/15 border border-[#ff6b5c]/30"
+            : "bg-emerald-500/10 border border-emerald-500/20"
+        }`}
+      >
+        {firstPublish ? (
+          <span className="text-3xl leading-none">🎉</span>
+        ) : (
+          <CheckCircle className="w-7 h-7 text-emerald-400" />
+        )}
       </div>
+
       <div>
+        {firstPublish && (
+          <p className="text-[11px] uppercase tracking-widest text-[#ff9a8f] mb-2">
+            Your first article
+          </p>
+        )}
         <h2
           className="text-[#f5f3ee] text-2xl mb-2"
           style={{ fontFamily: "var(--font-fraunces)" }}
         >
-          Published
+          {firstPublish ? "It’s live 🎉" : "Published"}
         </h2>
         <p className="text-[#858585] text-[14px] leading-relaxed line-clamp-2">
-          {title}
+          {firstPublish
+            ? "That blank page is behind you. Now help your first readers find it — share it where your people are."
+            : title}
         </p>
       </div>
 
@@ -695,6 +775,29 @@ function PublishedState({
           <ExternalLink className="w-3.5 h-3.5" />
           View article
         </a>
+
+        {/* Share-to-publicize nudge */}
+        <div className="grid grid-cols-2 gap-3">
+          <a
+            href={xUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2 py-3 rounded-xl border border-white/[0.08] text-[14px] text-[#aaa] hover:text-[#f5f3ee] hover:border-white/[0.16] transition-all"
+          >
+            <XIcon className="w-3.5 h-3.5" />
+            Share
+          </a>
+          <a
+            href={liUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2 py-3 rounded-xl border border-white/[0.08] text-[14px] text-[#aaa] hover:text-[#f5f3ee] hover:border-white/[0.16] transition-all"
+          >
+            <LinkedInIcon className="w-3.5 h-3.5" />
+            Share
+          </a>
+        </div>
+
         <button
           onClick={onCopy}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-white/[0.08] text-[14px] text-[#888] hover:text-[#f5f3ee] hover:border-white/[0.16] transition-all"

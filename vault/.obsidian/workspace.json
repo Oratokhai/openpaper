@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00-Index/Home.md",
+                "file": "10-Launch/Launch Posts.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Home"
+              "title": "Launch Posts"
             }
           }
         ],
@@ -217,8 +217,13 @@
   },
   "active": "a0c0401dde70afa4",
   "lastOpenFiles": [
-    "10-Research & Inspiration/Research & Inspiration.md",
+    "09-Roadmap/Roadmap.md.tmp.84811.8f389be6398d",
+    "03-Features/First-Publish Celebration.md",
+    "04-Features/First-Publish Celebration.md",
+    "04-Features",
     "00-Index/Home.md",
+    "10-Launch/Launch Posts.md",
+    "10-Research & Inspiration/Research & Inspiration.md",
     "Untitled.canvas",
     "10-Launch/Soft Launch.md",
     "10-Launch/Soft Launch.md.tmp.2023.2f4b691db123",

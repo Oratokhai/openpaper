@@ -5,6 +5,7 @@ import {
   PenLine, Users, Mail, Compass, Bookmark, Bell,
 } from "lucide-react";
 import { DocsToc, type DocsSection } from "@/components/docs/docs-toc";
+import { PublicTopNav } from "@/components/layout/public-top-nav";
 
 const SECTIONS: DocsSection[] = [
   { id: "overview", label: "What is Openpaper" },
@@ -26,26 +27,8 @@ export const metadata = {
 export default function DocsPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/[0.05]">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="text-[#f5f3ee] text-2xl" style={{ fontFamily: "var(--font-fraunces)" }}>❦</span>
-            <span className="text-[#f5f3ee] font-medium text-lg tracking-tight">Openpaper</span>
-            <span className="text-[#6e6e6e] text-sm ml-1">/ Docs</span>
-          </Link>
-          <div className="flex items-center gap-6 text-[15px] text-[#8a8a8a]">
-            <Link href="/explore" className="hidden sm:block hover:text-[#f5f3ee] transition-colors">Explore</Link>
-            <Link href="/models" className="hidden sm:block hover:text-[#f5f3ee] transition-colors">Models</Link>
-            <Link
-              href="/signup"
-              className="bg-[#ff6b5c] text-white text-sm px-5 py-2.5 rounded-xl font-medium hover:bg-[#e8513f] transition-colors"
-            >
-              Start writing
-            </Link>
-          </div>
-        </div>
-      </header>
+      {/* Header — shared pill (same as landing, /explore, /models) */}
+      <PublicTopNav />
 
       {/* Title */}
       <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 pb-10">

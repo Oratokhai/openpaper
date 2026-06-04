@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { PasswordStrength } from "@/components/auth/password-strength";
 
 type Step = "form" | "verify";
 
@@ -200,6 +201,7 @@ export default function SignUpPage() {
         <div>
           <label className="block text-[12px] text-[#8d8d8d] mb-2">Password</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required minLength={8} className="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-[#f5f3ee] placeholder:text-[#6e6e6e] focus:outline-none focus:border-[#ff6b5c]/60 focus:bg-white/[0.06] transition-all" />
+          <PasswordStrength password={password} />
         </div>
 
         {error && (

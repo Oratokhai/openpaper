@@ -57,14 +57,14 @@ export default async function NotificationsPage() {
               const cfg = ICONS[n.type];
               const initials = n.actor.name.split(" ").map((x) => x[0]).join("").slice(0, 2).toUpperCase();
               return (
-                <Link
+                <div
                   key={n.id}
-                  href={href(n)}
                   className={`flex items-start gap-4 py-4 px-2 -mx-2 rounded-xl transition-colors hover:bg-white/[0.02] ${
                     n.read ? "" : "bg-[#ff6b5c]/[0.04]"
                   }`}
                 >
-                  <div className="relative shrink-0">
+                  {/* Avatar → actor's profile */}
+                  <Link href={`/${n.actor.username}`} className="relative shrink-0" aria-label={`View ${n.actor.name}'s profile`}>
                     {n.actor.avatarUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={n.actor.avatarUrl} alt={n.actor.name} className="w-10 h-10 rounded-full object-cover" />
@@ -76,18 +76,25 @@ export default async function NotificationsPage() {
                     <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#161616] border border-white/[0.08] flex items-center justify-center">
                       <cfg.Icon className={`w-2.5 h-2.5 ${cfg.color}`} />
                     </span>
-                  </div>
+                  </Link>
 
                   <div className="flex-1 min-w-0">
                     <p className="text-[14px] text-[#ccc] leading-snug">
-                      <span className="text-[#f5f3ee] font-medium">{n.actor.name}</span> {cfg.verb}
-                      {n.article && <span className="text-[#888]"> · {n.article.title}</span>}
+                      {/* Name → actor's profile */}
+                      <Link href={`/${n.actor.username}`} className="text-[#f5f3ee] font-medium hover:underline underline-offset-2">
+                        {n.actor.name}
+                      </Link>{" "}
+                      {/* Action text → the article (falls back to the profile when there's no article) */}
+                      <Link href={href(n)} className="hover:text-[#f5f3ee] transition-colors">
+                        {cfg.verb}
+                        {n.article && <span className="text-[#888]"> · {n.article.title}</span>}
+                      </Link>
                     </p>
                     <p className="text-[12px] text-[#858585] mt-0.5">{formatRelativeDate(n.createdAt)}</p>
                   </div>
 
                   {!n.read && <span className="mt-2 w-2 h-2 rounded-full bg-[#ff6b5c] shrink-0" />}
-                </Link>
+                </div>
               );
             })}
           </div>

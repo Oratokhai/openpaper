@@ -58,6 +58,10 @@
 | Brand accent | **Signal coral `#ff6b5c`** (hover `#e8513f`, light `#ff9a8f`) — swapped wholesale from olive/forest green. Dark theme kept; adapted only the accent from a coral+paper writing-app reference | 2026-06-03 |
 | Writer Studio | New `/studio` writer's-desk (greeting + drafts + published) + floating editor command bar — adapted from the same reference, kept dark — see [[Design & Style]] | 2026-06-03 |
 | Navigation = Dynamic Island | Desktop rail reimagined as a floating **morphing pill** (motion/Framer): hover-expand (L1) + contextual morph per route (L3, writing/reading faces) + live-activity peeks (L2). Added `motion` dep. Mobile bar unchanged — see [[Design & Style]] | 2026-06-03 |
+| First-publish celebration | Publish-success state now nudges sharing (X + LinkedIn intents) on every publish; a writer's **first-ever** published article fires confetti + celebratory copy + a one-time congrats email (`sendFirstPublishCongrats`). See [[First-Publish Celebration]] | 2026-06-04 |
+| Signed-out chrome | The left rail / app shell is **signed-in only**. Logged-out visitors on public app pages (`/explore`, `/models`, reader, profile) now get a top **pill nav** (`PublicTopNav`: Explore · Models · Docs + Sign in / Start writing) — they no longer see the "logged-in" rail. `(app)/layout` branches on auth. **One shared nav across landing + docs + explore + models.** See [[Design & Style]] | 2026-06-04 |
+| Password guidance | Signup + reset-password forms show a live **strength meter + requirements checklist** (`components/auth/password-strength.tsx`) as the user types — teaches "strong enough" before Clerk rejects on submit (Clerk's own check only fires post-submit) | 2026-06-04 |
+| Feed avatars + clickable notif actors | Fixed: (1) `FeedCard` ignored `author.avatar` (always drew initials) — now renders the photo w/ initials fallback; data layer already provided it. (2) Notification rows were one big `<Link>` to the article, so you couldn't reach the actor — split into separate links (avatar + name → actor profile, action text → the post; can't nest `<a>` so the row is now a `<div>`) | 2026-06-04 |
 
 ---
 

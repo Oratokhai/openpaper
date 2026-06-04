@@ -51,6 +51,7 @@ The desktop left rail is a **floating, morphing pill** (`src/components/layout/s
 - **Centering:** an outer non-animated wrapper (`fixed left-3 top-0 bottom-0 flex items-center`) centers it. **Do not** put a CSS `transform` (e.g. `-translate-y-1/2`) on the `motion.aside` — `layout` drives transforms and they'll fight.
 - **L3 — contextual morph:** pages push context via `useIsland()` (`src/components/layout/island-context.tsx`, provider wraps the `(app)` layout). Collapsed face becomes `writing` (live word count + saved dot, from `write/page.tsx`) or `reading` (progress ring, from `reading-progress.tsx`). Hover always reveals full nav.
 - **L2 — live activities:** `pushActivity({icon,label,tone})` shows a transient peek (auto-clears ~2.4s), e.g. "Draft saved ✓" on save. Real-time notification peeks are a later upgrade (notifications aren't realtime yet).
+- **Signed-in only:** the rail (and the whole app shell) renders only when logged in. `(app)/layout` branches on `syncCurrentUser()` — when there's no `userId` it renders `PublicTopNav` (`src/components/layout/public-top-nav.tsx`), a top floating **pill** (Explore · Models · Docs + Sign in / Start writing), so logged-out visitors on public app pages (`/explore`, `/models`, reader, profile) never see the "logged-in" rail. Keep its links in sync with the landing header.
 
 ## Writer surfaces
 

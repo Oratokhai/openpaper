@@ -8,7 +8,7 @@ interface FeedCardProps {
     articleId?: string;
     title: string;
     excerpt: string;
-    author: { name: string; username: string };
+    author: { name: string; username: string; avatar?: string | null };
     publishedAt: string;
     readingTime: string;
     tags: string[];
@@ -66,9 +66,18 @@ export function FeedCard({ article, cover }: FeedCardProps) {
       {/* Footer: author + engagement */}
       <div className="flex items-center justify-between">
         <Link href={`/${article.author.username}`} className="flex items-center gap-3 group">
-          <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#ff6b5c] to-[#c9443a] flex items-center justify-center text-white text-xs font-semibold">
-            {initials}
-          </span>
+          {article.author.avatar ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={article.author.avatar}
+              alt={article.author.name}
+              className="w-8 h-8 rounded-full object-cover"
+            />
+          ) : (
+            <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#ff6b5c] to-[#c9443a] flex items-center justify-center text-white text-xs font-semibold">
+              {initials}
+            </span>
+          )}
           <span className="text-[15px] text-[#aaa] group-hover:text-[#f5f3ee] transition-colors">
             {article.author.name}
           </span>

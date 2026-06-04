@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { FileText, GraduationCap, BarChart3 } from "lucide-react";
-import { LandingMobileMenu } from "@/components/layout/landing-mobile-menu";
+import { PublicTopNav } from "@/components/layout/public-top-nav";
 import { IphoneArticle } from "@/components/mockup/iphone-article";
 import { OpusArticleBody } from "@/components/mockup/opus-article-body";
 import { listFeedArticles } from "@/db/articles";
@@ -17,31 +17,8 @@ export default async function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a]">
 
-      {/* ── Nav ─────────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="text-[#f5f3ee] text-2xl" style={{ fontFamily: "var(--font-fraunces)" }}>❦</span>
-            <span className="text-[#f5f3ee] font-medium text-lg tracking-tight">Openpaper</span>
-          </Link>
-
-          <nav className="hidden md:flex items-center gap-9 text-[15px] text-[#8a8a8a]">
-            <Link href="/explore" className="hover:text-[#f5f3ee] transition-colors">Explore</Link>
-            <Link href="/models"  className="hover:text-[#f5f3ee] transition-colors">Models</Link>
-            <Link href="/docs"    className="hover:text-[#f5f3ee] transition-colors">Docs</Link>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Link
-              href="/signup"
-              className="bg-[#ff6b5c] text-white text-sm px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-[#e8513f] transition-colors"
-            >
-              Start writing
-            </Link>
-            <LandingMobileMenu />
-          </div>
-        </div>
-      </header>
+      {/* ── Nav — shared pill (same as /explore, /models, /docs) ──────── */}
+      <PublicTopNav />
 
       <main className="flex-1">
 

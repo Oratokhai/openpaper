@@ -2,11 +2,11 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { and, desc, eq } from "drizzle-orm";
+import { and, count, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { articles, users } from "@/db/schema";
 import { syncCurrentUser } from "@/db/users";
-import { sendArticleToSubscribers } from "@/lib/email";
+import { sendArticleToSubscribers, sendFirstPublishCongrats } from "@/lib/email";
 
 type Freshness = "none" | "current" | "aging" | "outdated";
 export type PublicationType = "article" | "tutorial" | "benchmark";
@@ -28,8 +28,29 @@ export type PublishInput = {
 };
 
 export type PublishResult =
-  | { ok: true; id: string; username: string; slug: string; status: "draft" | "published" }
+  | {
+      ok: true;
+      id: string;
+      username: string;
+      slug: string;
+      status: "draft" | "published";
+      /** True only when this publish is the author's first-ever live article. */
+      firstPublish?: boolean;
+    }
   | { ok: false; error: string };
+
+/** Whether the author has exactly one published article (i.e. just published their first). */
+async function isAuthorsFirstPublished(authorId: string): Promise<boolean> {
+  try {
+    const [row] = await db
+      .select({ n: count() })
+      .from(articles)
+      .where(and(eq(articles.authorId, authorId), eq(articles.status, "published")));
+    return (row?.n ?? 0) === 1;
+  } catch {
+    return false;
+  }
+}
 
 function slugify(input: string): string {
   return (
@@ -132,12 +153,26 @@ export async function publishArticle(input: PublishInput): Promise<PublishResult
       .where(eq(articles.id, input.articleId));
 
     // Email subscribers only the first time the article goes live (not on re-edits).
-    const firstPublish = input.status === "published" && !existing.publishedAt;
-    if (firstPublish && input.emailDelivery) {
+    const wentLive = input.status === "published" && !existing.publishedAt;
+    if (wentLive && input.emailDelivery) {
       await sendArticleToSubscribers(input.articleId);
     }
 
-    return { ok: true, id: input.articleId, username, slug: existing.slug, status: input.status };
+    // Celebrate (and congrats-email) the author's first-ever published article.
+    let firstPublish = false;
+    if (wentLive && (await isAuthorsFirstPublished(userId))) {
+      firstPublish = true;
+      await sendFirstPublishCongrats(input.articleId);
+    }
+
+    return {
+      ok: true,
+      id: input.articleId,
+      username,
+      slug: existing.slug,
+      status: input.status,
+      firstPublish,
+    };
   }
 
   /* ── Create a new article ───────────────────────────────────────────────── */
@@ -173,7 +208,13 @@ export async function publishArticle(input: PublishInput): Promise<PublishResult
         await sendArticleToSubscribers(row.id);
       }
 
-      return { ok: true, id: row.id, username, slug, status: input.status };
+      let firstPublish = false;
+      if (input.status === "published" && (await isAuthorsFirstPublished(userId))) {
+        firstPublish = true;
+        await sendFirstPublishCongrats(row.id);
+      }
+
+      return { ok: true, id: row.id, username, slug, status: input.status, firstPublish };
     } catch (err) {
       if (isUniqueViolation(err)) {
         slug = `${base}-${attempt + 2}`;

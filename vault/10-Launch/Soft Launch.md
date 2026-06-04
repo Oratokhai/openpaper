@@ -1,6 +1,6 @@
 # Soft Launch
 
-> **Return to:** [[Home]] · Related: [[Business & Monetization]] · [[Roadmap]] · [[Audience & Personas]]
+> **Return to:** [[Home]] · Related: [[Business & Monetization]] · [[Roadmap]] · [[Audience & Personas]] · [[Launch Posts]]
 
 **Status:** Planned 2026-06-03 · ⬜ Not started
 **Goal:** ~20 real users + structured feedback. Not numbers, not a public moment yet.

@@ -103,6 +103,11 @@ Openpaper is live on Vercel: **openpaper-five.vercel.app** (GitHub: `Oratokhai/o
 - [x] **L2** live-activity peek (`pushActivity`) — "Draft saved ✓"/"Published ✓" on save.
 - ⬜ Real-time notification peeks (needs realtime/polling — notifications aren't live yet). ⬜ Reduced-motion fallback pass.
 
+### First-publish celebration + share nudges (2026-06-04)
+- [x] **Share-to-publicize** in the publish-success state — Share on X + Share on LinkedIn (web intent URLs) alongside Copy link / View. On every publish.
+- [x] **First-article milestone** — author's first-ever published article triggers a 🎉 confetti + celebratory copy in the drawer, pre-filled share text, and a one-time **congrats email** (`sendFirstPublishCongrats`, delivers to the author on Resend free tier). Detection: `isAuthorsFirstPublished` in `write/actions.ts`; `PublishResult.firstPublish`. See [[First-Publish Celebration]].
+- ⬜ Persistent milestone notification in the bell feed (needs `notifications` enum + nullable-actor migration — deferred).
+
 ## Phase 2 — Backend
 **Goal:** Make it real — auth, database, actual publishing/following.
 
